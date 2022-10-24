@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block content %}
+
+
+<section class="about-page">
+    {% include 'layout/navbar.html' %}
+
+    <div class="page-title">
+        <header>
+          <div class="container">
+            <h1 class="wow fadeInUp" data-wow-duration="2s">{% trans "ABOUT" %}</h1>
+          </div>
+        </header>
+      </div>
+      <div class="page-content">
+        <article>
+
+            {% for section in sections %}
+
+              {% if section.section_type == Section.FULL_WIDTH_IMAGE %}
+                {% if section.bg_image %}
+                  <!-- Start About Img-->
+                  <section class="about-img">
+                      <img class="w-100" src="{{section.bg_image.url}}"/>
+                  </section>
+                {% endif %}
+                <!-- End About Img-->
+              {% endif %}
+
+              {% if section.section_type == Section.TEXT %}
+
+                <!-- Start Who We Are Section -->
+                <section class="who-we-are">
+                  <div class="container">
+                    <div class="content">
+                      <header>
+                        <h3 class="wow fadeInUp" data-wow-duration="2s">
+                          {{section.title}}
+                        </h3>
+                      </header>
+                      <article>
+                        <p>
+                          {{section.description}}
+                        </p>
+                        {% if section.button_link %}
+
+                            <div class="action">
+                              {% if section.is_button_external %}
+                                <button onclick="window.open('{{section.button_url}}');">{{section.button_text}}</button>
+                              {% else %}
+                                <button onclick="window.location.href='{{section.button_url}}';">{{section.button_text}}</button>
+                              {% endif %}
+                            </div>
+
+                        {% endif %}
+                      </article>
+                    </div>
+                  </div>
+                </section>
+                <!-- End Who We Are Section -->
+              {% endif %}
+
+              {% if section.section_type == Section.IMAGE_WITH_TEXT %}
+                  {% if section.image_with_text_type == Section.IMAGE_TYPE_LEFT %}
+                    <section class="shoot-moon">
+                      <div class="container">
+                        <div class="row align-items-center justify-content-between">
+                          <div class="col-md-6">
+                            {% if section.bg_image %}
+                              <div class="section-img">
+                                <img class="w-100" src="{{section.bg_image.url}}" alt="{{section.title}}"/>
+                              </div>
+                            {% endif %}
+                          </div>
+                          <div class="col-md-5 col-lg-4">
+                            <div class="section-title">
+                              <h1 class="mt-4 wow fadeInUp" data-wow-duration="2s">{{section.title}}</h1>
+                              {% if section.is_button_external %}
+                                <button onclick="window.open('{{section.button_url}}');">{{section.button_text}}</button>
+                              {% else %}
+                                <button onclick="window.location.href='{{section.button_url}}';">{{section.button_text}}</button>
+                              {% endif %}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  {% endif %}
+
+                  {% if section.image_with_text_type == Section.IMAGE_TYPE_TOP %}
+
+                      <!-- Start Think to Create Section -->
+                      <section class="think-to-create">
+                        <div class="container">
+                          <div class="content">
+                            {% if section.bg_image %}
+                            <img src="{{section.bg_image.url}}" alt="{{section.title}}"/>
+                            {% endif %}
+                            <h2 class="wow fadeInUp" data-wow-duration="2s">{{section.title}}</h2>
+                            {% if section.is_button_external %}
+                              <button onclick="window.open('{{section.button_url}}');">{{section.button_text}}</button>
+                            {% else %}
+                              <button onclick="window.location.href='{{section.button_url}}';">{{section.button_text}}</button>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </section>
+                      <!-- End Think to Create Section -->
+
+                  {% endif %}
+
+                  {% if section.image_with_text_type == Section.IMAGE_TYPE_BOTTOM %}
+                    <section class="ultimate-growth">
+                      <div class="container">
+                        <div class="title">
+                          <h1 class="wow fadeInUp" data-wow-duration="2s">{{section.title}}</h1>
+                          {% if section.is_button_external %}
+                            <button onclick="window.open('{{section.button_url}}');">{{section.button_text}}</button>
+                          {% else %}
+                            <button onclick="window.location.href='{{section.button_url}}';">{{section.button_text}}</button>
+                          {% endif %}
+                        </div>
+                        {% if section.bg_image %}
+                          <div class="img">
+                            <img src="{{section.bg_image.url}}" alt="{{section.title}}"/>
+                          </div>
+                        {% endif %}
+                      </div>
+                    </section>
+                  {% endif %}
+
+              {% endif %}
+
+            {% endfor %}
+        </article>
+      </div>
+
+    {% include 'common/includes/order_a_service.html' %}
+</section>
+
+
+{% endblock %}

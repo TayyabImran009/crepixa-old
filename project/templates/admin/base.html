@@ -1,0 +1,16 @@
+{% extends 'admin/base.html' %}
+{% block extrahead %}
+<script type="text/javascript">
+    window.onload = (event) => {
+        var ddl = document.getElementById('modeltranslation-main-switch');
+        var opts = ddl.options.length;
+        for (var i=0; i<opts; i++){
+            if (ddl.options[i].text == "en"){
+                ddl.selectedIndex = i;
+                ddl.dispatchEvent(new Event('change'));
+                break;
+            }
+        }
+    }
+</script>
+{% endblock %}

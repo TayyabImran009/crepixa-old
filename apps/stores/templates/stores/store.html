@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<section class="store-item-page">
+    {% include 'layout/navbar.html' %}
+    <div class="page-title">
+        <header>
+            <div class="container">
+                <h1 class="wow fadeInUp" data-wow-duration="2s">{% trans 'STORE' %}</h1>
+            </div>
+        </header>
+    </div>
+    <div class="page-content">
+        <div class="container">
+            <article>
+                <!-- Start Topics Search-->
+                <section class="topic-search">
+                    <header>
+                        <h3>{{store_page.title}}</h3>
+                    </header>
+                    <article>
+                        <p>
+                            {{store_page.subtitle}}
+                        </p>
+                        <form id="stores-q-search-form" novalidate method="get" action="{% url 'stores:stores' %}">
+                            <div class="form-row">
+                                <div class="col-12 mb-3">
+                                    <div class="d-flex">
+                                        <input class="form-control mr-3" id="store-search-text" type="text" name="q" value="{{request.GET.q|default:''}}" placeholder="{% trans 'Search' %}"/>
+                                        <button type="submit">
+                                            <img src="{% static 'assets/icons/search.png' %}" alt="{% trans 'Search' %}"/>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </article>
+                </section>
+
+                <section class="logo-details">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-md-5 mby-3">
+                            <div class="logo-img">
+                                <img class="w-100" src="{{store.thumbnail.url}}" alt="{{store.title}}"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mby-3">
+                            <div class="logo-info">
+                                <header>
+                                    <h3>{{store.title}}</h3>
+                                </header>
+                                <article>
+                                    <p>
+                                        {{store.subtitle}}
+                                    </p>
+                                    <time>{{store.project_date|date:"m d Y"}}</time>
+
+                                    <ul class="list-unstyled p-0">
+                                        {% for c in store.categories.all %}
+                                            <li>{{c.name}}</li>
+                                        {% endfor %}
+
+                                        {% for c in store.sub_categories.all %}
+                                            <li>{{c.name}}</li>
+                                        {% endfor %}
+
+                                        {% for c in store.tags.all %}
+                                            <li>{{c.name}}</li>
+                                        {% endfor %}
+                                    </ul>
+
+
+                                    <p>Available as: EPS, PDF, Ai, SVG</p>
+                                    <button>
+                                        <img src="{% static 'assets/icons/cart.png' %}" alt="{% trans 'Add to Cart' %}"/>
+                                        <span class="mx-2">{% trans 'Add to Cart' %}</span>
+                                    </button>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="logo-more-info">
+                        <p>
+                            {{store.description}}
+                        </p>
+                        {% if store_features %}
+                        <h3>{% trans 'Features:' %}</h3>
+                        <ul class="p-0 m-0">
+                            {% for f in store_features %}
+                                <li>{{f.feature_text}}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </section>
+
+            </article>
+        </div>
+
+        <section class="topics-cards mt-5">
+            <div class="container">
+                <header>
+                    <h3>{% trans 'Similar Graphic Templates' %}</h3>
+                    <a href="{% url 'stores:stores' %}">{% trans 'See more' %}</a>
+                </header>
+                <div class="row">
+                    {% for store in similar_stores %}
+                        {% include 'stores/includes/single_store.html' %}
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    {% include 'common/includes/order_a_service.html' %}
+
+</section>
+
+
+{% endblock %}

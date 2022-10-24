@@ -1,0 +1,65 @@
+{% load i18n %}
+
+<!-- Cookies Modal-->
+<div class="modal hide fade cookies-modal" id="cookiesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <div class="modal-title">
+          <h4>{% trans "WE USE COOKIES!" %}</h4>
+        </div>
+        <div class="body-content">
+          <p>{% trans "We use cookies on our website. Some of them are essential, while others help us to improve this website for you." %}</p>
+<!--          TODO: store checked types of cookies once needed-->
+          <ul class="list-unstyled p-0 m-0 row">
+            <li class="col-sm-6 my-2">
+              <label class="container-checkbox redonly">
+                {% trans "Essential" %}
+                <input class="checked" type="checkbox" checked="checked" disabled="disabled"/>
+                <span class="checkmark"></span>
+              </label>
+            </li>
+            <li class="col-sm-6 my-2">
+              <label class="container-checkbox">
+                {% trans "Statistics" %}
+                <input type="checkbox"/>
+                <span class="checkmark"></span>
+              </label>
+            </li>
+            <li class="col-sm-6 my-2">
+              <label class="container-checkbox">
+                {% trans "Marketing" %}
+                <input type="checkbox"/>
+                <span class="checkmark"></span>
+              </label>
+            </li>
+            <li class="col-sm-6 my-2">
+              <label class="container-checkbox">
+                {% trans "External Media" %}
+                <input type="checkbox"/>
+                <span class="checkmark"></span>
+              </label>
+            </li>
+          </ul>
+          <div class="actions">
+            <button class="close" id="cookiesAcceptAll" type="button" data-dismiss="modal" aria-label="Close">{% trans "ACCEPT ALL" %}</button>
+            <button class="close" id="cookiesSave" type="button" data-dismiss="modal" aria-label="Close">{% trans "SAVE" %}</button>
+          </div>
+          <div class="footer">
+            <a href="{% url 'common:cookies' %}" target="_blank" rel="noopener noreferrer">
+              {% trans "Cookie Policy" %}
+            </a>
+            <span class="mx-1">|</span>
+            <a href="{% url 'common:terms' %}" target="_blank" rel="noopener noreferrer">
+              {% trans "Terms & Conditions" %}
+            </a>
+            <span class="mx-1">|</span>
+            <a href="{% url 'common:impressum' %}" target="_blank" rel="noopener noreferrer">
+              {% trans "Imprint" %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

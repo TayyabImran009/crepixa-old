@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block content %}
+
+<section class="privacy-page">
+    <div class="nav-bg"></div>
+
+    {% include "layout/navbar.html" %}
+
+      <div class="page-title">
+        <header>
+          <div class="container">
+            <h1 class="wow fadeInUp" data-wow-duration="2s">{% trans "COOKIES POLICY" %}</h1>
+          </div>
+        </header>
+      </div>
+      <div class="page-content">
+        <div class="container">
+          <article>
+            <h4>{% trans "You can Find a Printable version in the link below" %}</h4>
+            <a href="http://" target="_blank" rel="noopener noreferrer">{% trans "Click here" %}</a>
+            <div class="info mt-5">
+              <h4 class="mb-3">{% trans "Dear Crepixa Customer:" %}</h4>
+              <p>{% trans 'The following Terms of Service ("TOS") is a legal agreement between you or the employer or other entity on whose behalf you are entering into this agreement ("you" or "Customer") and Shutterstock (as such term is defined in Part V Section 24 below) and sets forth the rights and obligations with respect to any Content licensed by you.' %}</p>
+              <p>{% trans 'Please revisit this TOS when you purchase any Content licenses. Shutterstock reserves the right to modify the TOS at any time in its sole discretion. Prior to such changes becoming effective, Shutterstock will use reasonable efforts to notify you of any such change. Such notice may be made by email to the email address on file in your Shutterstock account, an announcement on this page, your login page, and/or by other means. Modifications to this TOS will only apply to prospective purchases (including any automated renewals). By licensing Content following any such modifications, you agree to be bound to the TOS as modified.' %}</p>
+              <p>{% trans 'THIS IS A SINGLE SEAT LICENSE AUTHORIZING ONE NATURAL PERSON TO LICENSE, DOWNLOAD AND USE CONTENT. UNLESS YOU UPGRADE TO A "TEAM SUBSCRIPTION" OR "PREMIER PLATFORM" ACCOUNT, NO OTHER PERSONS (INCLUDING EMPLOYEES, CO-WORKERS OR INDEPENDENT CONTRACTORS) MAY ACCESS YOUR ACCOUNT OR USE CONTENT LICENSED THROUGH YOUR ACCOUNT.' %}</p>
+              <p>{% trans 'IF YOU PURCHASE A "TEAM SUBSCRIPTION" THE RIGHT TO LICENSE, DOWNLOAD AND USE CONTENT IS LIMITED TO THE NUMBER OF USERS PERMITTED BY THAT TEAM SUBSCRIPTION. SHUTTERSTOCK’S "PREMIER PLATFORM" GRANTS ACCESS AND USAGE RIGHTS TO UNLIMITED USERS AMONG OTHER ADDITIONAL RIGHTS' %}</p>
+              <p>{% trans 'If you require access and usage rights for more than one natural person, please contact Customer Service (Phone: Inside US 1-866-663-3954, Outside US 1-646-419-4452 Email: Customer Support or our Premier Team). For clarity, if a user is acting in an employment capacity, the employer will be deemed the licensee for the purposes of the license.' %}</p>
+              <p>{% trans '"Content" means all content available for license from the Shutterstock website, including Images, Footage, Editorial, and Music (as defined herein.)' %}</p>
+              <p>{% trans '"Footage" means any moving images, animations, films, videos or other audio/visual representations, video elements, visual effects elements, templates, graphics packs, and motion design projects excluding still images, recorded in any format.' %}</p>
+              <p>{% trans '"Image(s)" means still photographs, vectors, drawings, graphics, and the like.' %}</p>
+              <p>{% trans '"Music" means any musical compositions, master recordings, and any other recordings containing sounds or a series of sounds, in all formats, now known and hereinafter developed' %}</p>
+              <p>{% trans '"Editorial" means still photographs and footage appearing under the Editorial tab/section.' %}</p>
+              <p>{% trans 'Shutterstock hereby grants you a non-exclusive, non-transferable right to use, modify (except as expressly prohibited herein) and reproduce Visual Content worldwide, in perpetuity, as expressly permitted by the applicable license and subject to the limitations set forth herein:' %}</p>
+              <p>{% trans 'A STANDARD IMAGE LICENSE grants you the right to use Images:' %}</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      {% include 'common/includes/order_a_service.html' %}
+    </section>
+
+
+{% endblock %}

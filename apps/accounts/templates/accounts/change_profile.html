@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load countries %}
+
+{% block content %}
+
+<section class="edit-profile-page">
+    {% include 'layout/navbar.html' %}
+    <div class="page-title">
+        <header>
+            <div class="container">
+                <h1 class="wow fadeInUp" data-wow-duration="2s">{% trans "Edit My Profile" %}</h1>
+            </div>
+        </header>
+    </div>
+    <div class="page-content">
+        <article>
+            <div class="container">
+                <form method="post" action="{% url 'accounts:change_profile' %}" novalidate autocomplete="off">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <h3>{% trans "Change Personal Info" %}</h3>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input class="custom-control-input" id="titleRadio1" type="radio" name="title" value="mr" {% if form.title.value == 'mr' %}checked{% endif %}/>
+                                <label class="custom-control-label" for="titleRadio1">{% trans "Mr." %}</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input class="custom-control-input" id="titleRadio2" type="radio" name="title" value="ms" {% if form.title.value == 'ms' %}checked{% endif %}/>
+                                <label class="custom-control-label" for="titleRadio2">{% trans "Ms." %}</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input class="custom-control-input" id="titleRadio3" type="radio" name="title" value="div" {% if form.title.value == 'div' %}checked{% endif %}/>
+                                <label class="custom-control-label" for="titleRadio3">{% trans "Div." %}</label>
+                            </div>
+
+
+                            <div class="invalid-feedback">
+                                {{form.title.errors}}
+                            </div>
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="id_first_name">{% trans "First Name*" %}</label>
+                            <input class="form-control" id="id_first_name" type="text" name="first_name" placeholder="{% trans 'Enter your first name' %}" value="{{form.first_name.value|default_if_none:''}}"/>
+
+                            {{form.first_name.errors}}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="id_last_name">{% trans "Last Name*" %}</label>
+                            <input class="form-control" id="id_last_name" type="text" name="last_name" placeholder="{% trans 'Enter your last name' %}" value="{{form.last_name.value|default_if_none:''}}"/>
+
+                            {{form.last_name.errors}}
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="id_company_name">{% trans "Company Name" %}</label>
+                            <input class="form-control" type="text" id="id_company_name" name="company_name" placeholder="{% trans 'Enter your company name' %}" value="{{form.company_name.value|default_if_none:''}}"/>
+
+                            {{form.company_name.errors}}
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="id_street_house_no">{% trans "Street & House No." %}</label>
+                            <input class="form-control" type="text" id="id_street_house_no" name="street_house_no" placeholder="{% trans 'Enter your street & house no.' %}" value="{{form.street_house_no.value|default_if_none:''}}"/>
+
+                            {{form.street_house_no.errors}}
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="id_zip_code">{% trans "Postal Code" %}</label>
+                            <input class="form-control" id="id_zip_code" name="zip_code" type="text" placeholder="{% trans 'Enter your postal code' %}" value="{{form.zip_code.value|default_if_none:''}}"/>
+
+                            {{form.zip_code.errors}}
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="id_city">{% trans "City" %}</label>
+                            <input class="form-control" id="id_city" name="city" type="text" placeholder="{% trans 'Enter your city' %}" value="{{form.city.value|default_if_none:''}}"/>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="id_country">{% trans "Country" %}</label>
+                            {% get_countries as countries %}
+                            <select name="country" class="form-control" id="id_country">
+                                <option value="">{% trans "Choose your country" %}</option>
+                                {% for country in countries %}
+                                    <option value="{{ country.code }}" {% if request.user.country == country.code %}selected{% endif %}>{{ country.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="id_email">{% trans "Email Address" %}</label>
+                            <input id="id_email" class="form-control" type="email" placeholder="{% trans 'Enter your email' %}" name="email" value="{{form.email.value|default_if_none:''}}"/>
+
+                            {{form.email.errors}}
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <div class="form-actions">
+                                <button class="btn btn-primary" onclick="window.location.href='{% url 'accounts:profile' %}'">{% trans "Cancel" %}</button>
+                                <button class="btn btn-primary" type="submit">{% trans "Save Changes" %}</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+                <form method="post" action="{% url 'accounts:change_password' %}" novalidate autocomplete="off">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <h3>{% trans "Change Password" %}</h3>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="id_password">{% trans "New Password" %}</label>
+                            <input class="form-control" id="id_password" name="password" type="password" placeholder="{% trans 'Enter your new password' %}"/>
+
+                            {{password_form.password.errors}}
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="id_password_confirmation">{% trans "Confirm New Password" %}</label>
+                            <input class="form-control" id="id_password_confirmation" type="password" name="password_confirmation" placeholder="{% trans 'Confirm your new password' %}"/>
+
+                            {{password_form.password_confirmation.errors}}
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="form-actions">
+                                <button class="btn btn-primary" onclick="window.location.href='{% url 'accounts:profile' %}'">{% trans "Cancel" %}</button>
+                                <button class="btn btn-primary" type="submit">{% trans "Save Changes" %}</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </article>
+    </div>
+</section>
+
+{% endblock %}

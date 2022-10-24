@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  project_img:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    image: crepixa:latest
+
+  project_app:
+    image: crepixa:latest
+    volumes:
+      - .:/project
+    env_file:
+      - .env
+
+  postgres:
+    image: postgres:12
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+    - "1025:1025"
+    - "8025:8025"
+
+  project:
+    extends: project_app
+    depends_on:
+      - postgres
+      - mailhog
+    command: ./wait-for-it.sh postgres:5432 -- ./manage.py runserver 0:8000
+    ports:
+      - "8000:8000"
+
+  partial:
+    extends: project_app
+    depends_on:
+      - postgres
+    command: ./wait-for-it.sh postgres:5432 -- ./manage.py runserver 0:8000
+    ports:
+      - "8000:8000"
+
+volumes:
+  postgres:

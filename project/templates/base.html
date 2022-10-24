@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static %}
+{% load opengraph %}
+{% load i18n %}
+{% load compress %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{LANGUAGE_CODE}}" {% if LANGUAGE_CODE == "ar" %}dir="rtl"{% endif %}>
+<head>
+<!-- Required meta tags-->
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <meta name="nekoterawelddimfrsc" content="{{ csrf_token }}"/>
+
+  <title>{% block title %}{% if page_title %}{{ page_title }} | {% endif %} Crepixa{% endblock %}</title>
+
+  {% block opengraph_meta %}
+  {% opengraph_meta request title=page_title description=meta_description %}
+  {% endblock %}
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{% static 'favicon.png' %}">
+
+  {% compress css %}
+    <!-- Hover Plugin-->
+    <link rel="stylesheet" href="{% static 'css/libs/hover-min.css' %}"/>
+    <!-- Animate Plugin-->
+    <link rel="stylesheet" href="{% static 'css/libs/animate.css' %}"/>
+    <!-- Owl Carousel Plugin-->
+    <link rel="stylesheet" href="{% static 'css/libs/owl.carousel.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/libs/owl.theme.default.min.css' %}"/>
+    <!-- Swiper CSS-->
+    <link rel="stylesheet" href="{% static 'css/libs/swiper.custom.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/libs/swiper.min.css' %}"/>
+    <!-- Fancybox CSS-->
+    <link rel="stylesheet" href="{% static 'css/libs/jquery.fancybox.min.css' %}"/>
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="{% static 'css/libs/bootstrap.min.css' %}"/>
+    <!-- Main SCroll File-->
+    <link rel="stylesheet" href="{% static 'css/libs/scroll.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/libs/intlTelInput.css' %}"/>
+    <!-- Main Style File-->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}"/>
+
+    {% if LANGUAGE_CODE == "ar" %}
+    <link rel="stylesheet" href="{% static 'css/rtl.css' %}"/>
+    {% endif %}
+
+    <style>
+      .text-overflow-elipsis {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      a.col-sm-6 {
+        text-decoration: none;
+      }
+      .errorlist {
+        list-style: none;
+        padding-left: 0;
+        padding-top: 10px;
+        color: #dc3545;
+      }
+    </style>
+    <!--RTL File-->
+  {% endcompress %}
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+  {% block extra_css %}
+
+  {% endblock %}
+
+</head>
+<body>
+
+    <section class="loading-page" id="loading-section" style="z-index: 500;">
+      <img src="{% static 'assets/loading/Loading.gif' %}"/>
+    </section>
+
+    {% block content %}{% endblock %}
+
+    {% include "layout/footer.html" %}
+
+  {% block popup %}{% endblock %}
+
+  {% compress js %}
+  {% include "layout/javascript.html" %}
+  {% endcompress %}
+
+  {% block extra_js %}{% endblock %}
+
+</body>
+
+
+</html>

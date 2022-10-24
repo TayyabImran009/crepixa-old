@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<section class="blog-article-page">
+    {% include "layout/navbar.html" %}
+    {% include "posts/includes/page_title.html" %}
+    <div class="page-content">
+        <div class="container">
+            <article>
+                <!-- Start Topics Search-->
+                <section class="topic-search">
+                    <header>
+                        <h3>{% trans "Creative Topics" %}</h3>
+                    </header>
+                    <article>
+                        <p>{% trans "Discover topics related to Art, Design, Business and more!" %}</p>
+                        <form action="{% url 'posts:posts' %}" method="get">
+                            <div class="form-row">
+                                <div class="col-12 mb-3">
+                                    <div class="d-flex">
+                                        <input class="form-control mr-3" name="q" type="text" placeholder="{% trans 'Search' %}"/>
+                                        <button type="submit">
+                                            <img src="{% static 'assets/icons/search.png' %}" alt="{% trans 'Search' %}"/>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </article>
+                </section>
+                <!-- End Topics Search-->
+                <!-- Start Branding Principles Section-->
+                <section class="branding-principles">
+                    <header>
+                        <h1>{{post.title}}</h1>
+                        {% if author_full_name %}
+                        <h5>{% trans "By" %} {{author_full_name}}</h5>
+                        {% endif %}
+                    </header>
+                    <article>
+                        <time>{{post.posted_at|date:"m, d, Y"}}</time>
+                        {% if post.categories.all %}
+                        <ul class="list-unstyled p-0 mb-5">
+                            {% for c in post.categories.all %}
+                            <li>{{c.name}}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </article>
+                </section>
+                <!-- End Branding Principles Section-->
+            </article>
+        </div>
+
+        {% for section in sections %}
+
+            {% if section.section_type == Section.FULL_WIDTH_IMAGE %}
+            <section class="seprator-bg">
+                <img class="w-100" src="{{section.section_image.url}}"/>
+            </section>
+            {% endif %}
+
+            {% if section.section_type == Section.IMAGE %}
+            <div class="container">
+                <section class="seprator-bg">
+                    <img class="w-100" src="{{section.section_image.url}}"/>
+                </section>
+            </div>
+            {% endif %}
+
+
+            {% if section.section_type == Section.TEXT %}
+
+                <div class="container">
+                    <div class="info-title">
+                        <p>
+                            {{ section.section_text|linebreaks }}
+                        </p>
+                    </div>
+                </div>
+            {% endif %}
+
+
+        {% endfor %}
+
+        {% if posts %}
+        <!-- Start Topics Card-->
+        <section class="topics-cards mt-5">
+            <div class="container">
+                <header>
+                    <h3>{% trans "More Topics" %}</h3>
+                    <a href="{% url 'posts:posts' %}">{% trans "See more" %}</a>
+                </header>
+
+
+                <div class="row">
+                    {% for post in posts %}
+                        {% include "posts/includes/single_post.html" %}
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!-- End Topics Card-->
+        {% endif %}
+    </div>
+
+    {% include 'common/includes/order_a_service.html' %}
+</section>
+{% endblock %}

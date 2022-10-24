@@ -1,0 +1,263 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<section class="portofolio-page">
+    {% include 'layout/navbar.html' %}
+    <div class="page-title">
+        <header>
+            <div class="container">
+                <h1 class="wow fadeInUp" data-wow-duration="2s">{% trans 'PORTFOLIO' %}</h1>
+            </div>
+        </header>
+    </div>
+    <div class="page-content">
+        <div class="container">
+            <article>
+                <!-- Start Topics Search-->
+                <section class="topic-search">
+                    <header>
+                        <h3>{{portfolio_page.title}}</h3>
+                    </header>
+                    <article>
+                        <p>
+                            {{portfolio_page.subtitle}}
+                        </p>
+                    </article>
+                </section>
+                <!-- End Topics Search-->
+                <div class="row py-5" style="margin-bottom: 0px!important; padding-bottom: 3rem!important;">
+                    <div class="col-lg-3">
+                        <!-- Start Filter Section-->
+                        <div class="filter-sec">
+                            <header>
+                                <h3 class="d-none d-lg-block">
+                                    <img src="{% static 'assets/icons/filter-icon.png' %}" alt="{% trans 'filter' %}"/>
+                                    <span>{% trans 'Filters' %}</span>
+                                </h3>
+                                    <a class="d-block d-lg-none" href="#" data-toggle="modal" data-target="#largeModal">
+                                        <img src="{% static 'assets/icons/filter-icon.png' %}" alt="{% trans 'filter' %}"/>
+                                        <span>{% trans 'Filters' %}</span>
+                                    </a>
+                            </header>
+                            <article>
+                                <form id="portfolios-search-form" class="filters-content d-none d-lg-block">
+                                    {% if categories %}
+                                        <ul class="list-unstyled p-0 m-0">
+                                            <li>
+                                                <h4>{% trans 'Categories' %}</h4>
+                                            </li>
+                                            {% for c in categories %}
+                                            <li>
+                                                <label class="container-checkbox">
+                                                    {{c.name}}
+                                                    <input type="checkbox" name="c" data-pk="{{c.pk}}" {% if c.selected %}checked{% endif %}/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+
+                                    {% if sub_categories %}
+                                        <ul class="list-unstyled p-0 m-0">
+                                            <li>
+                                                <h4>{% trans 'Sub Categories' %}</h4>
+                                            </li>
+                                            {% for c in sub_categories %}
+                                                <li>
+                                                    <label class="container-checkbox">
+                                                        {{c.name}}
+                                                        <input type="checkbox" name="sc" data-pk="{{c.pk}}" {% if c.selected %}checked{% endif %}/>
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+
+                                    {% if tags %}
+                                        <ul class="list-unstyled p-0 m-0">
+                                            <li>
+                                                <h4>{% trans 'Tags' %}</h4>
+                                            </li>
+                                            {% for tag in tags %}
+                                                <li>
+                                                    <label class="container-checkbox">
+                                                        {{tag.name}}
+                                                        <input type="checkbox" name="t" data-pk="{{tag.pk}}" {% if tag.selected %}checked{% endif %}/>
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </form>
+
+
+                                <!-- filter modal-->
+                                <div class="filter-model">
+                                    <div class="modal modal-right fade p-0" id="largeModal" tabindex="-1" role="dialog"
+                                         aria-labelledby="basicModal" aria-hidden="true">
+                                        <div class="modal-dialog modal-full">
+                                            <div class="modal-content">
+                                                <div class="modal-header align-items-center">
+                                                    <header>
+                                                        <h3 id="mobileFilterCloseButton">
+                                                            <img src="{% static 'assets/icons/filter-icon.png' %}" alt="{% trans 'Filter' %}"/>
+                                                            <span>{% trans "Filters" %}</span>
+                                                        </h3>
+                                                    </header>
+                                                    <button id="clearAllFilterButton" class="close" type="button" data-dismiss="modal" aria-label="{% trans 'Close' %}">
+                                                        <span aria-hidden="true">{% trans 'Clear all' %}</span>
+                                                    </button>
+                                                </div>
+                                                <form id="portfolios-search-form-mobile" class="modal-body">
+                                                    {% if categories %}
+                                                    <ul class="list-unstyled p-0 m-0">
+                                                        <li>
+                                                            <h4>{% trans 'Categories' %}</h4>
+                                                        </li>
+                                                        {% for c in categories %}
+                                                        <li>
+                                                            <label class="container-checkbox">
+                                                                {{c.name}}
+                                                                <input type="checkbox" name="c" data-pk="{{c.pk}}" {% if c.selected %}checked{% endif %}/>
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                        </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    {% endif %}
+
+                                                    {% if sub_categories %}
+                                                    <ul class="list-unstyled p-0 m-0">
+                                                        <li>
+                                                            <h4>{% trans 'Sub Categories' %}</h4>
+                                                        </li>
+                                                        {% for c in sub_categories %}
+                                                        <li>
+                                                            <label class="container-checkbox">
+                                                                {{c.name}}
+                                                                <input type="checkbox" name="sc" data-pk="{{c.pk}}" {% if c.selected %}checked{% endif %}/>
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                        </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    {% endif %}
+
+                                                    {% if tags %}
+                                                    <ul class="list-unstyled p-0 m-0">
+                                                        <li>
+                                                            <h4>{% trans 'Tags' %}</h4>
+                                                        </li>
+                                                        {% for tag in tags %}
+                                                        <li>
+                                                            <label class="container-checkbox">
+                                                                {{tag.name}}
+                                                                <input type="checkbox" name="t" data-pk="{{tag.pk}}" {% if tag.selected %}checked{% endif %}/>
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                        </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    {% endif %}
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- End Filter Section-->
+                    </div>
+                    <div class="col-lg-9">
+                        <!-- Start Topics Card-->
+                        <section class="topics-cards">
+                            <div class="container">
+                                <div class="row" id="portfolios-container">
+                                    {% include 'portfolios/includes/portfolios.html' %}
+                                </div>
+                            </div>
+                        </section>
+                        <!-- End Topics Card-->
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    {% include 'common/includes/order_a_service.html' %}
+
+</section>
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+    url = '{% url 'portfolios:portfolios' %}?';
+    lastFinalUrl = url
+    function getProjects(page) {
+        finalUrl = url
+        $('#portfolios-search-form input[type=checkbox]').each(function() {
+            val = $(this).attr('data-pk');
+            if (this.checked) {
+                finalUrl += this.name+'='+val+'&';
+            }
+        });
+
+        $('#portfolios-search-form-mobile input[type=checkbox]').each(function() {
+            val = $(this).attr('data-pk');
+            if (this.checked) {
+                finalUrl += this.name+'='+val+'&';
+            }
+        });
+
+        finalUrl += '&page=' + page;
+
+        if (finalUrl[finalUrl.length-1] == '&') {
+            finalUrl = finalUrl.substring(0, finalUrl.length-1);
+        }
+
+        if (finalUrl == lastFinalUrl) {
+            return;
+        }
+
+        lastFinalUrl = finalUrl
+
+        window.history.pushState('', '', lastFinalUrl);
+        $.ajax({
+            url: lastFinalUrl,
+            success: function(r) {
+                $('#portfolios-container').html(r);
+            }
+        });
+    }
+
+    $('#portfolios-search-form').on('click', function() {
+        getProjects(1);
+    });
+    $('#portfolios-search-form-mobile').on('click', function() {
+        getProjects(1);
+    });
+
+
+    $('#portfolios-container').on('click', '.pagination a', function() {
+        getProjects($(this).data('page'));
+        return false;
+    });
+
+    $('#clearAllFilterButton').on('click', function() {
+        $('#portfolios-search-form-mobile input[type="checkbox"]').prop("checked", false);
+    });
+
+    $('#mobileFilterCloseButton').on('click', function() {
+        $('#largeModal').modal('hide');
+    });
+</script>
+{% endblock %}

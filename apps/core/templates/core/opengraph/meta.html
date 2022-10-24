@@ -1,0 +1,23 @@
+{% if site_name %}
+  <meta property="og:site_name" content="{{ site_name }}" />
+{% endif %}
+
+{% if title %}
+  <meta property="og:title" content="{{ title }}">
+  <meta name="twitter:title" content="{{ title }}">
+{% endif %}
+
+{% if image %}
+  <meta property="og:image" content="{{ image }}">
+  <meta name="twitter:image" content="{{ image }}">
+{% endif %}
+
+{% if description %}
+  <meta name="description" content="{{ description }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta name="twitter:description" content="{{ description }}">
+{% endif %}
+
+<meta property="og:url" content="{{ url }}">
+<meta property="og:type" content="{{ og_type }}">
+<meta name="twitter:card" content="summary">

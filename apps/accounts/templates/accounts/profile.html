@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<section class="profile-page">
+  {% include 'layout/navbar.html' %}
+    <div class="page-title">
+        <header>
+            <div class="container">
+                <h1 class="wow fadeInUp" data-wow-duration="2s">{% trans 'My Profile' %}</h1>
+            </div>
+        </header>
+    </div>
+    <div class="page-content">
+        <article>
+            <div class="profile-sec">
+                <div class="container">
+                    <div class="profile-title">
+                        <div class="title">
+                            <h3>{{object.title}} {{object.full_name}}</h3>
+                        </div>
+                        <div class="edit-btn">
+                            <button onclick="window.location.href='{% url 'accounts:change_profile' %}'">
+                              <img src="{% static 'assets/icons/edit.png' %}"/>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="profile-data">
+                        <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <tbody>
+                                <tr>
+                                    <th scope="row">{% trans "Company name:" %}</th>
+                                    <td>{{object.company_name|default_if_none:''}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">{% trans "Email:" %}</th>
+                                    <td>{{object.email}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">{% trans "Address:" %}</th>
+                                    <td>{{object.street_house_no|default_if_none:''}} {{object.zip_code|default_if_none:''}} {{object.city|default_if_none:''}} {{object.country|default_if_none:''}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button onclick="window.location.href='{% url 'orders:place' %}#direct';">{% trans "ORDER A SERVICE" %}</button>
+                        <button onclick="window.location.href='{% url 'stores:stores' %}';">{% trans "GO TO STORE" %}</button>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    {% if messages %}
+        {% for message in messages %}
+            $('#success-message-title').html('{% trans "Profile" %}');
+            $('#success-message-text').html('{{message}}');
+            $('#successModal').modal('show');
+        {% endfor %}
+    {% endif %}
+    });
+</script>
+
+{% endblock %}

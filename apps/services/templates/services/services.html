@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<section class="services-page">
+    {% include 'layout/navbar.html' %}
+
+    <div class="page-title">
+        <header>
+          <div class="container">
+            <h1 class="wow fadeInUp" data-wow-duration="2s">{% trans 'SERVICES' %}</h1>
+          </div>
+        </header>
+      </div>
+      <div class="page-content">
+        <div class="container">
+          <article>
+            <!-- Start Services Needed-->
+            <section class="services-needed">
+              <header>
+                <h3>{% trans 'Which services are you interested in?' %}</h3>
+              </header>
+              <article>
+                <div class="tabs-section my-5">
+                  <div class="row align-items-center">
+                    <div class="col-lg-4 col-md-5 my-3">
+                      <div class="search d-flex">
+                        <input class="w-100 mr-3" id="service-search-box" type="text" placeholder="{% trans 'Search' %}"/>
+                        <button type="submit" id="service-search-btn">
+                            <img src="{% static 'assets/icons/search.png' %}" alt="{% trans 'Search' %}"/>
+                        </button>
+                      </div>
+                    </div>
+                    {% if categories %}
+                    <div class="col-lg-8 col-md-7 my-3">
+                      <header class="secondary-nav" id="secondary-nav" style="top:0;">
+                        <ul class="vam nav scroll dragger scroller nav nav-pills" id="pills-tab" role="tablist">
+                          {% for c in categories %}
+                            <li class="nav-item">
+                              <button class="nav-link {% if request.GET.ss == c.pk|stringformat:'i' %}show active{% endif %}{% if not request.GET.ss %}{% if forloop.first %}active{% endif %}{% endif %}" id="pills-{{c.pk}}-tab" href="#pills-{{c.pk}}-content" data-toggle="pill" role="tab" aria-controls="pills-{{c.pk}}" {% if request.GET.ss == c.pk|stringformat:'i' %}show active{% endif %}{% if not request.GET.ss %}{% if forloop.first %}aria-selected="true"{% endif %}{% endif %}>{{c.name}}</button>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </header>
+                    </div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="tab-content mt-4" id="pills-tabContent">
+                  {% if categories %}
+                    {% for c in categories %}
+                      <div class="tab-pane fade {% if request.GET.ss == c.pk|stringformat:'i' %}show active{% endif %} {% if not request.GET.ss %}{% if forloop.first %}show active{% endif %}{% endif %}" id="pills-{{c.pk}}-content" role="tabpanel" aria-labelledby="pills-{{c.pk}}-content-tab">
+                       <div class="logo-content">
+                         <div class="logo-types">
+                          <div class="row card-group">
+                            {% for s in services %}
+                              {% if s.category.pk == c.pk %}
+                                <div class="col-lg-6 my-3 serviceItemForSearch" data-text="{{s.title}}">
+                                    <div class="types-card h-100 card">
+                                      {% if s.most_popular %}
+                                        <div class="most-popular">
+                                          <p>
+                                            <i class="fas fa-star"></i>
+                                            <span class="mx-2">{{s.most_popular}}</span>
+                                          </p>
+                                        </div>
+                                      {% endif %}
+                                      <div class="card-body p-0">
+                                        <div class="media">
+                                          <img class="mr-2" src="{{s.icon.url}}" alt="{{s.title}}"/>
+                                          <div class="media-body">
+                                            <h5>{{s.title}}</h5>
+                                            <p><span>{{s.price}}</span></p>
+                                          </div>
+                                        </div>
+                                        <div class="content">
+                                          <p>
+                                            {{s.description}}
+                                          </p>
+                                          <ul class="list-unstyled m-0 pl-3">
+                                            {% for f in s.serviceitemfeature_set.all %}
+                                              <li>{{f.name}}</li>
+                                            {% endfor %}
+                                          </ul>
+                                        </div>
+                                      </div>
+                                      <div class="card-footer">
+                                        <button>{% trans 'Add to cart' %}</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                              {% endif %}
+                            {% endfor %}
+
+
+                            {% for p in packages %}
+                              {% if p.category.pk == c.pk %}
+                                <div class="col-lg-4 col-md-6 my-3 serviceItemForSearch" data-text="{{p.title}}">
+                                  <div class="price-card h-100">
+                                    <h3>
+                                      <span>{{p.price_currency}}</span>
+                                      <strong>{{p.price}}</strong>
+                                      <sup>{{p.price_small}}</sup>
+                                    </h3>
+                                    <h5>{{p.title}}</h5>
+
+                                    <ul class="list-unstyled p-0 m-0">
+                                      {% for f in p.packagefeature_set.all %}
+                                      <li>
+                                        <img src="{% static 'assets/icons/check-icon.png' %}" alt="{{f.name}}"/>
+                                        <span class="ml-3">{{f.name}}</span>
+                                      </li>
+                                      {% endfor %}
+                                    </ul>
+                                    <div class="action">
+                                      <button>{% trans 'Add to cart' %}</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              {% endif %}
+                            {% endfor %}
+
+                            </div>
+
+                           <div class="row" style="display: block;">
+
+                             {% if sliders %}
+                              <div class="logo-slider">
+                                <div class="slider">
+                                  <div class="carousel slide" id="carouselExampleCaptions-{{c.pk}}" data-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                      {% for s in sliders %}
+                                        <li data-target="#carouselExampleCaptions-{{c.pk}}" data-slide-to="{{forloop.counter0}}" class="{% if forloop.first %}active{% endif %}"></li>
+                                      {% endfor %}
+                                    </ol>
+                                    <div class="carousel-inner">
+                                      {% for s in sliders %}
+                                        <div class="carousel-item {% if forloop.first %}active{% endif %}" style="background: url({{s.image.url}});">
+                                          <div class="d-flex align-items-center justify-content-center content">
+                                            <div class="carousel-caption">
+                                              <h1>{{s.title|default_if_none:''}}</h1>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      {% endfor %}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            {% endif %}
+
+                           </div>
+
+                           <div class="row" style="display: block;">
+                             <div class="logo-cards px-3">
+                               <div class="row">
+                                 {% for p in products %}
+                                   {% if p.category.pk == c.pk %}
+
+                                     <div class="col-lg-3 col-md-4 col-sm-6 p-0 serviceItemForSearch" data-text="{{p.title}}">
+                                       <div class="logo-card h-100">
+                                         <img class="mr-2" src="{{p.icon.url}}" alt="{{p.title}}"/>
+                                         <div class="content">
+                                           <h5>{{p.title}}</h5><span>{{p.price}}</span>
+                                           <p>{{p.subtitle}}</p>
+                                         </div>
+                                         <div class="footer">
+                                           <button>{% trans 'Add to cart' %}</button>
+                                         </div>
+                                       </div>
+                                     </div>
+
+                                   {% endif %}
+                                 {% endfor %}
+
+                               </div>
+                             </div>
+
+                           </div>
+                         </div>
+                       </div>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </article>
+            </section>
+            <!-- End Services Needed-->
+          </article>
+        </div>
+      </div>
+
+    {% include 'common/includes/order_a_service.html' %}
+
+</section>
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+  $('#service-search-box').keypress(function (e) {
+    if (e.which == 13) {
+      refresh();
+      return false;
+    }
+  });
+
+  $('#service-search-btn').on('click', function() {
+    refresh();
+  });
+
+  function refresh() {
+    b = $('#service-search-box').val();
+
+    $('.serviceItemForSearch').each(function(){
+      a = $(this).data('text');
+      if (a.includes(b)) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block content %}
+
+<section class="place-your-order-page">
+    {% include "layout/navbar.html" %}
+
+    <div class="modal fade placeOrder-modal" id="placeyourorderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="modal-title">
+                        <h4>{% trans "Place Your Order" %}</h4>
+                    </div>
+                    <div class="body-content">
+                        <form id="place-order-form" novalidate>
+                            <div class="form-group">
+                                <input class="form-control" id="business-name" type="text" name="name" placeholder="{% trans 'Name*' %}"/>
+                                <div id="place-order-form-error-name" class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="email" name="email" placeholder="{% trans 'Email Address*' %}"/>
+                                <div id="place-order-form-error-email" class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input class="form-control w-100" id="mobile_code" type="text" placeholder="{% trans 'Phone Number' %}" name="phone_number"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="service">
+                                    {% for service in services %}
+                                        <option value="{{ service.id }}">{{ service.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" rows="7" name="details" placeholder="{% trans 'Order Details*' %}"></textarea>
+                                <div id="place-order-form-error-details" class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group text-center">
+                                <button class="submit-btn">{% trans 'Next' %}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade placeOrder2-modal" id="placeyourorderModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body text-center">
+            <div class="modal-title">
+              <h4>{% trans "Place Your Order" %}</h4>
+            </div>
+            <div class="body-content">
+              <form id="place-order-form-final">
+                <div class="form-group">
+                  <div class="d-flex">
+                    <input class="form-control w-75" name="budget" type="text" placeholder="{% trans 'Your Budget*' %}"/>
+                    <select class="form-control mx-1 w-25" name="currency">
+                      <option value="USD" {% if LANGUAGE_CODE != "de" and LANGUAGE_CODE != 'fr' %}selected{% endif %}>USD</option>
+                      <option value="EUR" {% if LANGUAGE_CODE == "de" or LANGUAGE_CODE == 'fr' %}selected{% endif %}>EUR</option>
+                    </select>
+                  </div>
+                    <div id="place-order-form-final-error-budget" class="invalid-feedback"></div>
+                </div>
+                <div class="form-group my-4">
+                  <label class="container-checkbox">
+                      {% trans "Your Deadline (Optional)" %}
+                    <input type="checkbox" id="checkDeadline" name="deadline"/>
+                      <span class="checkmark"></span>
+                  </label>
+                </div>
+                <div class="form-group">
+                   <input class="form-control w-100" id="deadlineInput" type="date" name="deadline" disabled/>
+                </div>
+                <div class="form-group">
+                  <div class="upload-file">
+                    <p>{% trans "Attach Files (Optional)" %}</p>
+                    <div class="file-input">
+                      <input class="choose" type="file" name="attached" accept="image/*" onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])"/>
+                        <span class="button text-uppercase">
+                            <img class="mx-2" src="{% static 'assets/icons/upload.png' %}"/>{% trans "Upload File" %}
+                        </span>
+                        <span class="label mx-2">{% trans "preview files" %}</span>
+                    </div>
+                      <img id="preview"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="g-recaptcha" data-sitekey="6Ld9cp8fAAAAAE53Eph5DZck2jMFnzuayYY_EeET"></div>
+                  <input class="form-control d-none" name="captcha" data-recaptcha="true" data-error="{% trans 'Please complete the Captcha' %}"/>
+                  <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group text-center">
+                  <button class="submit-btn" id="orderBackBtn">{% trans "Back" %}</button>
+                  <button class="submit-btn">{% trans "Send" %}</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-title">
+        <header>
+            <div class="container">
+                <h1 class="wow fadeInUp" data-wow-duration="2s">{% trans "Place Your Order" %}</h1>
+            </div>
+        </header>
+    </div>
+
+    <div class="page-content">
+        <article>
+            <div class="direct-order">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-9 col-lg-7">
+                            <div class="content">
+                                <button data-toggle="modal" data-target="#placeyourorderModal" data-dismiss="modal">{% trans "Direct Order" %}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="container">
+                    <div class="content">
+                        <p>{% trans "Place your order directly by emailing our team. We will be in contact with you soon to discuss the details of your project." %}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="customize-order">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-9 col-lg-7">
+                            <div class="content">
+                                <p>{% trans "Coming Soon!" %}</p>
+                                <button>{% trans "Customized Order" %}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="container">
+                    <p>{% trans "Need a customized order? Complete a quick questionnaire so that our team can place all your ideas in one place. We will incorporate your vision into the project from start to finish!" %}</p>
+                </div>
+            </div>
+        </article>
+    </div>
+
+</section>
+{% endblock %}
+
+{% block extra_js %}
+
+<script src="{% static 'assets/js/libs/intlTelInput-jquery.min.js' %}"></script>
+
+<script type="text/javascript">
+    $("#mobile_code").intlTelInput({
+        initialCountry: "in",
+        separateDialCode: true
+    });
+
+
+    $(window).on('load', function() {
+        var url = window.location.href;
+        var parts = url.split('#');
+        if (parts.length > 1) {
+            if (parts.pop() == 'direct') {
+                $('#placeyourorderModal').modal('show');
+            }
+        }
+    });
+
+    var placeOrderCheckURL = '{% url "orders:order_check" %}';
+    var placeOrderURL = '{% url "orders:order" %}';
+
+    $('#place-order-form-final').on('submit', function() {
+        var formData = new FormData($(this)[0]);
+        $('#place-order-form-final .invalid-feedback').hide();
+
+        var prevFormData = new FormData($("#place-order-form")[0]);
+        for (var pair of prevFormData.entries()) {
+            formData.append(pair[0], pair[1]);
+        }
+        $.ajax({
+            url: placeOrderURL,
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            async: false,
+            cache: false,
+            enctype: 'multipart/form-data',
+            dataType: 'json'
+        }).done(function() {
+            $('#placeyourorderModal2').modal('hide');
+            $('#success-message-title').html('{% trans "Order Placed" %}');
+            $('#success-message-text').html('{% trans "Your order has been placed successfully! we will contact you ASAP" %}');
+            $('#successModal').modal('show');
+            document.getElementById("place-order-form").reset();
+        })
+        .fail(function(response) {
+            for (var key in response.responseJSON) {
+                $('#place-order-form-final-error-' + key).text(response.responseJSON[key]).show();
+            }
+        });
+        return false;
+    });
+
+    $('#place-order-form').on('submit', function() {
+        var formData = new FormData($(this)[0]);
+        $('#place-order-form .invalid-feedback').hide();
+        $.ajax({
+            url: placeOrderCheckURL,
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: 'json'
+        }).done(function() {
+            $('#placeyourorderModal').modal('hide');
+            $('#placeyourorderModal2').modal('show');
+        })
+        .fail(function(response) {
+            for (var key in response.responseJSON) {
+                $('#place-order-form-error-' + key).text(response.responseJSON[key]).show();
+            }
+        });
+        return false;
+    });
+
+    $('#checkDeadline').on('change', function() {
+        if ($('#checkDeadline').prop('checked')) {
+            $('#deadlineInput').attr('disabled', false);
+        } else {
+            $('#deadlineInput').attr('disabled', true);
+        }
+    });
+
+    $('#orderBackBtn').on('click', function() {
+        $('#placeyourorderModal2').modal('hide');
+        $('#placeyourorderModal').modal('show');
+        return false;
+    });
+
+</script>
+
+{% endblock %}

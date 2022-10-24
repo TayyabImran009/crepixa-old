@@ -1,0 +1,21 @@
+<div class="col-sm-6 my-4" data-pk="{{store.pk}}">
+    <a href="{{store.get_absolute_url}}">
+        <div class="topic-card h-100">
+            <div class="card-img"><img class="w-100" src="{{store.thumbnail.url}}" alt="{{store.title}}"/>
+                {% if store.label_color %}
+                    <span class="{{store.label_color}}-sale">
+                        {{store.label_text}}
+                    </span>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <h4 class="text-overflow-elipsis" title="{{store.title}}">
+                    {{store.title}}
+                </h4>
+                <p class="text-overflow-elipsis" title="{{store.subtitle}}">
+                    {{store.subtitle}}
+                </p>
+            </div>
+        </div>
+    </a>
+</div>

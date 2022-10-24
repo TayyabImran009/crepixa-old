@@ -1,0 +1,11 @@
+{% extends base_template %}
+
+{% load i18n %}
+
+{% block content %}
+
+{% trans 'Please follow the link to confirm your email address!' %}
+
+{{email_confirmation_url}}
+
+{% endblock %}

@@ -1,0 +1,692 @@
+body {
+    text-align: start;
+    direction: rtl;
+}
+ul {
+    padding: 0;
+}
+
+/** Start Mobile Input **/
+.iti--allow-dropdown input, .iti--allow-dropdown input[type=text],
+.iti--allow-dropdown input[type=tel],
+.iti--separate-dial-code input,
+.iti--separate-dial-code input[type=text],
+.iti--separate-dial-code input[type=tel] {
+    padding-left: .75rem !important;
+    padding-right: 87px !important;
+}
+.iti--allow-dropdown .iti__flag-container,
+.iti--separate-dial-code .iti__flag-container {
+    right: 5px !important;
+    left: auto !important;
+}
+.intl-tel-input .selected-flag .iti-arrow {
+    right: unset;
+    left: 6px;
+}
+.intl-tel-input .selected-flag {
+    padding: 0 8px 0 0;
+}
+.intl-tel-input .country-list {
+    text-align: start;
+    font-size: 14px;
+}
+.intl-tel-input .country-list .flag-box,
+.intl-tel-input .country-list .country-name {
+    margin-right: 0;
+    margin-left: 6px;
+}
+.intl-tel-input.allow-dropdown input[type=tel] {
+    padding-left: 0.75rem !important;
+    padding-right: 52px !important;
+}
+/** End Mobile Input **/
+
+/* Start Navbar Section */
+.navbar-section .navbar-nav .nav-item .nav-link:before {
+    left: unset;
+    right: -1px;
+    transform: translateX(100%);
+}
+/* End Navbar Section */
+
+/* Start Home Page */
+.home-page .testimonials article .testimonials-content .swiper-container .swiper-button-next i,
+.home-page .testimonials article .testimonials-content .swiper-container .swiper-button-prev i {
+    transform: scale(-1, 1);
+}
+/* End Home Page */
+
+/* Start About Page */
+.about-page .page-content article .who-we-are .content::after,
+.about-page .page-content article .vision .content::after,
+.about-page .page-content article .mission .content::after,
+.about-page .page-content article .part-of-us .content::after,
+.impressum-page .page-content article .impressum-txt .content::after {
+    left: unset;
+    right: 0;
+    transform: scale(-1, 1);
+}
+.about-page .page-content article .who-we-are .content,
+.about-page .page-content article .vision .content,
+.about-page .page-content article .mission .content,
+.about-page .page-content article .part-of-us .content,
+.impressum-page .page-content article .impressum-txt .content {
+    position: relative;
+    padding-left: 0;
+    padding-right: 45px;
+}
+/* End About Page */
+
+/* Start Contact Us Page */
+@media (min-width: 992px) {
+    .contact-page .page-content article .contact-content .contact-info {
+        clip-path: polygon(0 0, 95% 0, 95% 50%, 100% 53%, 95% 55%, 95% 100%, 0 100%);
+    }
+}
+/* End Contact Us Page */
+
+/* Start Blog Page */
+.blog-page .page-content article .topic-search article form input {
+    margin-right: 0!important;
+    margin-left: 1rem!important;
+}
+/* End Blog Page */
+
+/* Start Blog Article Page */
+.blog-article-page .page-content article .topic-search article form input {
+    margin-right: 0!important;
+    margin-left: 1rem!important;
+}
+/* End Blog Article Page */
+
+/* Start Checkout Page */
+.checkout-page .page-content .table-img img,
+.checkout-page .page-content article .checkout-content .order-cart article .order-action .add-service-btn button img {
+    transform: scale(-1, 1);
+}
+.checkout-page .page-content article .checkout-content .order-cart article .order-action .add-service-btn button:hover img {
+    transform: translateX(5px) scale(-1, 1);
+}
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .credit-card-tab .more-info .expiration-date {
+    margin-right: 0%;
+    margin-left: 10%;
+}
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .credit-card-tab .more-info .form-group select:first-child {
+    margin-right: 0;
+    margin-left: 15px;
+}
+.checkout-page .page-content article .checkout-content .payment-info article .payment-footer .custom-control-label::before,
+.checkout-page .page-content article .checkout-content .payment-info article .payment-footer .custom-control-label::after {
+    left: unset;
+    right: -1.5rem;
+}
+/* End Checkout Page */
+
+/* Start Edit My Profile Page */
+.edit-profile-page .page-content article form .custom-control-inline {
+    margin-right: 0%;
+    margin-left: 10%;
+}
+.edit-profile-page .page-content article form .custom-radio label {
+    padding-left: 0;
+    padding-right: 2rem;
+}
+.edit-profile-page .page-content article form .custom-radio label:before {
+    left: unset;
+    right: 0;
+}
+.edit-profile-page .page-content article form .custom-radio input[type="radio"]:checked + label::after {
+    left: unset;
+    right: 4px;
+}
+/* End Edit My Profile Page */
+
+/* Start My Orders Page */
+.my-orders-page .page-content article .my-orders .content table thead th:first-child {
+    border-radius: 0 32px 32px 0;
+}
+.my-orders-page .page-content article .my-orders .content table thead th:last-child {
+    border-radius: 32px 0 0 32px;
+}
+.my-orders-page .page-content article .my-orders .content .table-footer .table-actions .content input,
+.my-orders-page .page-content article .my-orders .content .table-footer .table-actions .content span {
+    margin-right: 0rem!important;
+    margin-left: 0.5rem!important;
+}
+/* End My Orders Page */
+
+/* End My Orders Page */
+.order-placed-page .page-content article .revision-section article .edit-action {
+    margin-left: 0%;
+    margin-right: 5%;
+}
+.order-placed-page .page-content article .revision-section article .edit-action button:hover span {
+    transform: translateX(-5px);
+}
+.order-placed-page .page-content article .revision-section article .desired-service .content ul li {
+    margin-right: 0px;
+    margin-left: 20px;
+}
+/* End My Orders Page */
+
+/* Start Place Your Order Page */
+.place-your-order-form-page .page-content article .section-action .continue .btn img {
+    transform: scale(-1, 1);
+}
+.place-your-order-form-page .page-content article .section-action .continue .btn:hover img {
+    transform: translateX(-5px) scale(-1, 1);
+}
+.place-your-order-form-page .page-content article .step2 .section-counter .number button.minus {
+    border-radius: 0 8px 8px 0;
+}
+.place-your-order-form-page .page-content article .step2 .section-counter .number button.plus {
+    border-radius: 8px 0 0 8px;
+}
+.place-your-order-form-page .page-content article .section-action .back .btn img {
+    transform: scale(-1, 1);
+}
+.place-your-order-form-page .page-content article .section-action .back .btn:hover img {
+    transform: translateX(5px) scale(-1, 1);
+}
+.place-your-order-form-page .page-content article .step6 .upload-file .file-input > .button {
+    margin-right: 0;
+    margin-left: 8px;
+}
+/* End Place Your Order Page */
+
+/* Start PORTOFOLIO Page */
+.portofolio-page .page-content article .filter-sec article ul li .container-checkbox {
+    padding-left: 0;
+    padding-right: 35px;
+}
+.portofolio-page .page-content article .filter-sec article ul li .container-checkbox .checkmark {
+    left: unset;
+    right: 0;
+}
+.portofolio-page .page-content article .filter-sec article .filter-model .modal-header button {
+    margin: -1rem -1rem -1rem;
+}
+/* End PORTOFOLIO Page */
+
+/* Start SERVICES Page */
+.services-page .page-content article .services-needed article .tabs-section .search input {
+    margin-right: 0rem!important;
+    margin-left: 1rem!important;
+}
+.services-page .page-content article .services-needed article .logo-content .logo-types .types-card .media img {
+    margin-right: 0rem!important;
+    margin-left: 0.5rem!important;
+}
+.services-page .page-content article .services-needed article .logo-content .logo-types .types-card .media p {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.services-page .page-content article .services-needed article .logo-content .logo-types .types-card .media p span:last-child {
+    margin-left: 0;
+    margin-right: 15px;
+}
+.services-page .page-content article .services-needed article .logo-content .price-card ul li span {
+    margin-left: 0rem!important;
+    margin-right: 1rem!important;
+}
+/* End SERVICES Page */
+
+/* Start Store Page */
+.store-page .page-content article .topic-search article form input,
+.store-item-page .page-content article .topic-search article form input {
+    margin-right: 0rem!important;
+    margin-left: 1rem!important;
+}
+.store-page .page-content article .filter-sec article ul li .container-checkbox,
+.placeOrder2-modal .modal-content .modal-body .body-content form .container-checkbox,
+.cookies-modal .modal-content .modal-body .body-content .container-checkbox,
+.store-page .page-content article .filter-sec article ul li .container-checkbox,
+.placeOrder2-modal .modal-content .modal-body .body-content form .container-checkbox,
+.cookies-modal .modal-content .modal-body .body-content .container-checkbox {
+    padding-left: 0;
+    padding-right: 35px;
+}
+.store-page .page-content article .filter-sec article ul li .container-checkbox .checkmark,
+.placeOrder2-modal .modal-content .modal-body .body-content form .container-checkbox .checkmark,
+.cookies-modal .modal-content .modal-body .body-content .container-checkbox input:checked ~ .checkmark,
+.cookies-modal .modal-content .modal-body .body-content .container-checkbox .checkmark {
+    left: unset;
+    right: 0;
+}
+.store-page .page-content article .filter-sec article .filter-model .modal-header button {
+    margin: -1rem -1rem -1rem;
+}
+.store-page .page-content .topics-cards .topic-card .card-img span,
+.store-item-page .page-content .topics-cards .topic-card .card-img span {
+    left: 0;
+    right: unset;
+    border-radius: 0px 7px 7px 0px;
+}
+.store-item-page .page-content article .logo-details .logo-more-info ul {
+    margin-left: 0px !important;
+    margin-right: 24px !important;
+}
+.store-item-page .page-content .topics-cards header a:hover {
+    transform: translateX(-5px);
+}
+/* End Store Page */
+
+/* Start Login In Modal */
+.login-modal .modal-content .modal-body .custom-control-label::before,
+.login-modal .modal-content .modal-body .custom-control-label::after {
+    left: 0rem;
+    right: -1.5rem;
+}
+.login-modal .modal-content .modal-header button.close {
+    right: unset;
+    left: 20px;
+}
+/* End Login In Modal */
+
+/* Start SIGN UP Modal */
+.signup-modal .modal-content .modal-header button.close {
+    right: unset;
+    left: 20px;
+}
+.signup-modal .modal-content .modal-body .body-content form .custom-control-inline {
+    margin-right: 0%;
+    margin-left: 10%;
+}
+.signup-modal .modal-content .modal-body .body-content form .custom-radio label:before {
+    left: unset;
+    right: 0;
+}
+.signup-modal .modal-content .modal-body .body-content form .custom-radio label {
+    padding-left: 0rem;
+    padding-right: 2rem;
+}
+.signup-modal .modal-content .modal-body .body-content form .custom-radio input[type="radio"]:checked + label::after {
+    left: unset;
+    right: 4px;
+}
+.signup-modal .modal-content .modal-body .custom-control-label::before,
+.signup-modal .modal-content .modal-body .custom-control-label::after {
+    left: 0rem;
+    right: -1.5rem;
+}
+.signup-modal .modal-content .modal-body .terms-conditions .custom-control {
+    padding-left: 0rem;
+    padding-right: 1.5rem;
+}
+/* End SIGN UP Modal */
+
+
+.footer-section .social-icons .contetnt .left-side ul li {
+    padding-right: 0;
+    padding-left: 5%;
+}
+
+.footer-section .social-icons {
+    background: linear-gradient(
+90deg
+, #ffdd00 50%, #ffff 50%);
+}
+
+.signup-modal .modal-content .modal-body .body-content form select,
+.placeOrder-modal .modal-content .modal-body .body-content form select,
+.edit-profile-page .page-content article form select,
+.placeOrder2-modal .modal-content .modal-body .body-content form select {
+    appearance: none;
+    background: url('http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png') #F6F8FA no-repeat calc(3% - 0px) !important;
+}
+
+@font-face {
+    src: url("../fonts/Simah-Bold.otf");
+    font-family: "Simah-Bold"; }
+@font-face {
+    src: url("../fonts/Simah-ExtraBold.otf");
+    font-family: "Simah-ExtraBold"; }
+@font-face {
+    src: url("../fonts/Simah-Medium.otf");
+    font-family: "Simah-Medium"; }
+@font-face {
+    src: url("../fonts/Simah-Regular.otf");
+    font-family: "Simah-Regular"; }
+@font-face {
+    src: url("../fonts/Simah-SemiBold.otf");
+    font-family: "Simah-SemiBold"; }
+
+.navbar-section .navbar-nav .nav-item .nav-link,
+.home-page .main-sec .carousel.slide .carousel-inner .carousel-item .carousel-caption h1,
+.footer-section .footer-links .content .address ul li,
+.footer-section .footer-links .content .address ul li a,
+.footer-section .footer-links .copywright p,
+.about-page .page-content article .who-we-are .content header h3,
+.about-page .page-content article .vision .content header h3,
+.about-page .page-content article .mission .content header h3,
+.about-page .page-content article .part-of-us .content header h3,
+.about-page .page-content article .think-to-create .content h2,
+.about-page .page-content article .shoot-moon .section-title h1,
+.about-page .page-content article .ultimate-growth .title h1,
+.blog-page .page-content article .topic-search header h3,
+.blog-page .page-content article .topics-cards .topic-card .card-body h4,
+.blog-article-page .page-content article .topic-search header h3,
+.blog-article-page .page-content article .branding-principles header h1,
+.blog-article-page .page-content .topics-cards header h3,
+.blog-article-page .page-content .topics-cards .topic-card .card-body h4,
+.checkout-page .page-content article .checkout-content .order-cart header h2,
+.checkout-page .page-content article .checkout-content .cart-info header h3,
+.checkout-page .page-content article .checkout-content .cart-info article form .actions .check button,
+.checkout-page .page-content article .checkout-content .payment-info article .payment-footer .action-btn button,
+.checkout-page .page-content article .checkout-content .payment-info header h3,
+.subscripe-modal .modal-content .modal-body .body-content h4 ,
+.login-modal .modal-content .modal-body .modal-title h4,
+.signup-modal .modal-content .modal-body .modal-title h4,
+.edit-order-page .page-content article form h3,
+.edit-profile-page .page-content article form h3,
+.impressum-page .page-content article .impressum-txt .content header h3,
+.cookies-modal .modal-content .modal-body .modal-title h4,
+.newPassword-modal .modal-content .modal-body .modal-title h4,
+.newPassword-modal .modal-content .modal-body .body-content h4,
+.passwordUpdatedSuccessfully-modal .modal-content .modal-body .modal-title h4,
+.passwordUpdatedSuccessfully-modal .modal-content .modal-body .body-content h4,
+.placeOrder-modal .modal-content .modal-body .modal-title h4,
+.placeOrder2-modal .modal-content .modal-body .modal-title,
+.my-orders-page .page-content article .my-orders .title h3,
+.my-orders-page .page-content article .my-orders .content .table-header header h4,
+.order-placed-page .page-content article .revision-section header h3,
+.place-your-order-page .page-content article .direct-order button,
+.place-your-order-page .page-content article .customize-order button,
+.place-your-order-form-page .page-content article .step1 .services-info header h3,
+.portofolio-page .page-content article .topic-search header h3,
+.portofolio-page .page-content article .portofolio-txt header h5,
+.services-page .page-content article .services-needed article ul.nav li button,
+.services-page .page-content article .services-needed article .logo-content .logo-types .types-card .media h5,
+.services-page .page-content article .services-needed article .logo-content .logo-types .types-card .card-footer button,
+.services-page .page-content article .services-needed article .logo-content .logo-cards .logo-card .content h5,
+.services-page .page-content article .services-needed article .logo-content .logo-cards .logo-card .footer button,
+.store-page .pagination li.next a,
+.store-page .pagination li.previous a {
+    font-family: "Simah-SemiBold";
+}
+
+.navbar-section .form-inline .navbar-nav .nav-item .nav-link,
+.home-page .main-sec .carousel.slide .carousel-inner .carousel-item .carousel-caption button,
+.home-page .testimonials header h2,
+.home-page .testimonials article .testimonials-content .swiper-wrapper .swiper-slide .testi-card .card-title h3 ,
+.home-page .testimonials article .testimonials-content .swiper-wrapper .swiper-slide .testi-card .card-title h5,
+.home-page .our-portofoliol .carousel.slide .carousel-inner .carousel-item .carousel-caption button,
+.home-page .services-section .services-content a .item-content h4,
+.order-service .brand-section button,
+.footer-section .social-icons .contetnt .left-side ul li a,
+.footer-section .social-icons .contetnt .left-side ul li .dropdown .dropdown-toggle,
+.footer-section .social-icons .contetnt .left-side ul li .dropdown .dropdown-menu .dropdown-item,
+.about-page .page-content article .think-to-create .content button,
+.about-page .page-content article .shoot-moon .section-title button,
+.about-page .page-content article .ultimate-growth .title button,
+.about-page .page-content article .who-we-are .content article .action button,
+.about-page .page-content article .vision .content article .action button,
+.about-page .page-content article .mission .content article .action button,
+.about-page .page-content article .part-of-us .content article .action button,
+.blog-page .page-content article .topic-search article form select,
+.blog-page .page-content article .topics-cards .topic-card .card-body time,
+.blog-page .pagination li.previous a,
+.blog-page .pagination li.next a,
+.blog-article-page .page-content article .branding-principles article time,
+.blog-article-page .page-content .topics-cards header a,
+.blog-article-page .page-content .topics-cards .topic-card .card-body time,
+.checkout-page .page-content article .checkout-content .order-cart article .order-table table thead tr th,
+.checkout-page .page-content article .checkout-content .order-cart article .order-action table tbody tr td,
+.checkout-page .page-content article .checkout-content .order-cart article .order-action table tfoot tr td span,
+.checkout-page .page-content article .checkout-content .order-cart article .order-action table tfoot tr td,
+.checkout-page .page-content article .checkout-content .order-cart article .order-action .add-service-btn button,
+.checkout-page .page-content article .checkout-content .cart-info article form .upload-file .file-input > [type="file"],
+.checkout-page .page-content article .checkout-content .cart-info article form .upload-file .file-input > .button,
+.checkout-page .page-content article .checkout-content .cart-info article form .actions .coupon button,
+.checkout-page .page-content article .checkout-content .payment-info article .payment-footer label a,
+.checkout-page .page-content article .checkout-content .payment-info header h6,
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section ul li.nav-item a,
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .paypal-section h5,
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .klarna-section h5,
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .invoice-section h5,
+.subscripe-modal .modal-content .modal-body .body-content form button,
+.contact-page .page-content article .contact-content .form-content h5,
+.contact-page .page-content article .contact-content .form-content form button,
+.login-modal .modal-content .modal-body .body-content h4,
+.login-modal .modal-content .modal-body .body-content form .custom-control label,
+.login-modal .modal-content .modal-body .body-content form .forget-password a,
+.login-modal .modal-content .modal-body .body-content form button.submit-btn,
+.login-modal .modal-content .modal-body .body-content form h5,
+.login-modal .modal-content .modal-body .body-content form button.scial-btn,
+.login-modal .modal-content .modal-body .body-content .sign-up p a,
+.signup-modal .modal-content .modal-body .body-content h4,
+.signup-modal .modal-content .modal-body .body-content form .terms-conditions label a strong,
+.signup-modal .modal-content .modal-body .body-content form .terms-conditions label a,
+.signup-modal .modal-content .modal-body .body-footer button.submit-btn,
+.signup-modal .modal-content .modal-body .body-footer h5,
+.signup-modal .modal-content .modal-body .body-footer button.scial-btn,
+.signup-modal .modal-content .modal-body .body-footer .sign-up p a,
+.privacy-page .page-content article h4,
+.privacy-page .page-content article a,
+.privacy-page .page-content article h4,
+.edit-order-page .page-content article form .form-actions button,
+.edit-profile-page .page-content article form .form-actions button,
+.error-page .error-content .data-content h4,
+.error-page .error-content .data-content button,
+.cookies-modal .modal-content .modal-body .body-content .actions button,
+.newPassword-modal .modal-content .modal-body .body-content form button.submit-btn,
+.passwordUpdatedSuccessfully-modal .modal-content .modal-body .body-content form button.submit-btn,
+.placeOrder-modal .modal-content .modal-body .body-content form button.submit-btn,
+.placeOrder2-modal .modal-content .modal-body .body-content form .upload-file .file-input > .button,
+.placeOrder2-modal .modal-content .modal-body .body-content form button.submit-btn,
+.my-orders-page .page-content article .my-orders .title button,
+.my-orders-page .page-content article .my-orders .content table thead,
+.my-orders-page .page-content article .my-orders .content table tbody td span,
+.my-orders-page .page-content article .my-orders .content .table-footer .table-actions .content button,
+.order-placed-page .page-content article .revision-section header h5,
+.order-placed-page .page-content article .revision-section article .order-name .form-group label,
+.order-placed-page .page-content article .revision-section article .edit-action button span,
+.order-placed-page .page-content article .revision-section article .desired-service .content h5,
+.order-placed-page .page-content article .revision-section article .questions .content h5,
+.order-placed-page .page-content article .revision-section article .styles .content h5,
+.order-placed-page .page-content article .revision-section article .addtional-info .content h5,
+.order-placed-page .page-content article .revision-section article .action-btns button,
+.place-your-order-form-page .page-content article .step-parent .step-indicator-para h4,
+.place-your-order-form-page .page-content article .step1 .services-type .service label,
+.place-your-order-form-page .page-content article .section-action .continue .btn,
+.place-your-order-form-page .page-content article .step2 .services-type .service label,
+.place-your-order-form-page .page-content article .step2 .section-counter .number label,
+.place-your-order-form-page .page-content article .step2 .section-counter .categories select,
+.place-your-order-form-page .page-content article .step2 .section-counter .number input,
+.place-your-order-form-page .page-content article .section-action .back .btn,
+.place-your-order-form-page .page-content article .section-action .skip .btn,
+.place-your-order-form-page .page-content article .step6 .upload-file .file-input > .button,
+.place-your-order-form-page .page-content article .section-action .submit-btn button,
+.place-your-order-form-page .page-content article .section-action .add-btn button,
+.portofolio-page .page-content article .filter-sec header h3,
+.portofolio-page .page-content article .filter-sec header a,
+.portofolio-page .page-content article .filter-sec article ul li h4,
+.portofolio-page .page-content .topics-cards .topic-card .card-body h4,
+.portofolio-page .pagination li.previous a,
+.portofolio-page .pagination li.next a,
+.portofolio-page .page-content .topics-cards a,
+.profile-page .page-content article .profile-actions button,
+.profile-page .page-content article .profile-sec .profile-title .title h3,
+.profile-page .page-content article .profile-data .table-responsive table tbody tr th,
+.portofolio-page .page-content article .portofolio-txt header h3,
+.services-page .page-content article .services-needed header h3,
+.store-page .page-content article .topic-search header h3,
+.store-page .page-content article .filter-sec header h3,
+.store-page .page-content article .filter-sec header a,
+.store-page .page-content article .filter-sec article ul li h4,
+.store-page .page-content .topics-cards .topic-card .card-body h4,
+.store-item-page .page-content article .topic-search header h3,
+.store-item-page .page-content article .logo-details .logo-info article button,
+.store-item-page .page-content article .logo-details .logo-info header h3,
+.store-item-page .page-content article .logo-details .logo-more-info strong,
+.store-item-page .page-content article .logo-details .logo-more-info h3,
+.store-item-page .page-content .topics-cards header h3,
+.store-item-page .page-content .topics-cards .topic-card .card-body h4,
+.terms-page .page-content article h4,
+.terms-page .page-content article a {
+    font-family: "Simah-Bold";
+}
+
+.home-page .main-sec .carousel.slide .carousel-inner .carousel-item .carousel-caption p,
+.home-page .testimonials article .testimonials-content .swiper-wrapper .swiper-slide .testi-card .card-info p,
+.order-service .brand-section article p,
+.footer-section .footer-links .content .links ul li a,
+.about-page .page-content article .who-we-are .content article p,
+.about-page .page-content article .vision .content article p,
+.about-page .page-content article .mission .content article p,
+.about-page .page-content article .part-of-us .content article p,
+.blog-page .page-content article .topic-search article p,
+.blog-page .page-content article .topic-search article form input,
+.blog-page .page-content article .topics-cards .topic-card .card-body p,
+.blog-page .page-content article .topics-cards a,
+.blog-article-page .page-content article .topic-search article p,
+.blog-article-page .page-content article .topic-search article form input,
+.blog-article-page .page-content article .branding-principles header h5,
+.blog-article-page .page-content article .branding-principles article ul li,
+.blog-article-page .page-content .info-title p,
+.blog-article-page .page-content .topics-cards .topic-card .card-body p,
+.checkout-page .page-content article .checkout-content .order-cart article .order-table table tbody tr:first-child td,
+.checkout-page .page-content article .checkout-content .order-cart article .order-table table tbody tr td,
+.checkout-page .page-content article .checkout-content .order-cart article .order-action table tbody tr td span,
+.checkout-page .page-content article .checkout-content .cart-info article form input,
+.checkout-page .page-content article .checkout-content .cart-info article form p,
+.checkout-page .page-content article .checkout-content .cart-info article form .upload-file .file-input > .label,
+.checkout-page .page-content article .checkout-content .cart-info article form .actions .coupon input,
+.checkout-page .page-content article .checkout-content .payment-info article .payment-footer label,
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .credit-card-tab label,
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .sepa-section label,
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .credit-card-tab .name .form-group input,
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .sepa-section .name .form-group input,
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .credit-card-tab .number .credit-inputs input,
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .sepa-section .number .credit-inputs input,
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .credit-card-tab .more-info .form-group select,
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .sepa-section .more-info .form-group select,
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .credit-card-tab .more-info .form-group input,
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .sepa-section .more-info .form-group input,
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .paypal-section p,
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .klarna-section p,
+.checkout-page .page-content article .checkout-content .payment-info article .tabs-section .tab-content .invoice-section p,
+.subscripe-modal .modal-content .modal-body .body-content p,
+.subscripe-modal .modal-content .modal-body .body-content form input,
+.navbar-section .form-inline .navbar-nav .nav-item .dropdown-menu .dropdown-item,
+.navbar-section .form-inline .navbar-nav .nav-item .dropdown-menu .dropdown-item.lang,
+.contact-page .page-content article .contact-content .form-content form input,
+.contact-page .page-content article .contact-content .form-content form textarea,
+.contact-page .page-content article .contact-content .contact-info .content .address ul li,
+.contact-page .page-content article .contact-content .contact-info .content .address ul li a,
+.contact-page .page-content article .contact-content .contact-info .content .social-icons p a,
+.login-modal .modal-content .modal-body .body-content form label,
+.login-modal .modal-content .modal-body .body-content form input,
+.login-modal .modal-content .modal-body .body-content p,
+.login-modal .modal-content .modal-body .body-content .sign-up p,
+.signup-modal .modal-content .modal-body .body-content p,
+.signup-modal .modal-content .modal-body .body-content form label,
+.signup-modal .modal-content .modal-body .body-content form input,
+.signup-modal .modal-content .modal-body .body-content form select,
+.signup-modal .modal-content .modal-body .body-content form .terms-conditions label,
+.signup-modal .modal-content .modal-body .body-footer .sign-up p,
+.privacy-page .page-content article p,
+.edit-order-page .page-content article form input, .edit-order-page .page-content article form textarea,
+.edit-order-page .page-content article form label,
+.navbar-section .form-inline .navbar-nav .nav-item .dropdown-menu .dropdown-item span,
+.edit-profile-page .page-content article form .custom-radio label,
+.edit-profile-page .page-content article form label,
+.edit-profile-page .page-content article form input,
+.edit-profile-page .page-content article form select,
+.impressum-page .page-content article .impressum-txt .content article p,
+.cookies-modal .modal-content .modal-body .body-content p,
+.cookies-modal .modal-content .modal-body .body-content label,
+.cookies-modal .modal-content .modal-body .body-content .footer a,
+.newPassword-modal .modal-content .modal-body .body-content p,
+.newPassword-modal .modal-content .modal-body .body-content form input,
+.newPassword-modal .modal-content .modal-body .body-content form label,
+.placeOrder-modal .modal-content .modal-body .body-content form input,
+.placeOrder-modal .modal-content .modal-body .body-content form select,
+.placeOrder-modal .modal-content .modal-body .body-content form textarea,
+.placeOrder2-modal .modal-content .modal-body .body-content form input,
+.placeOrder2-modal .modal-content .modal-body .body-content form select,
+.store-page .page-content article .filter-sec article ul li .container-checkbox,
+.placeOrder2-modal .modal-content .modal-body .body-content form .container-checkbox,
+.cookies-modal .modal-content .modal-body .body-content .container-checkbox,
+.store-page .page-content article .filter-sec article ul li .container-checkbox,
+.placeOrder2-modal .modal-content .modal-body .body-content form .container-checkbox,
+.cookies-modal .modal-content .modal-body .body-content .container-checkbox,
+.placeOrder2-modal .modal-content .modal-body .body-content form .upload-file .file-input > .label,
+.my-orders-page .page-content article .my-orders .title p,
+.my-orders-page .page-content article .my-orders .content table tbody td,
+.my-orders-page .page-content article .my-orders .content .table-header .table-actions input,
+.my-orders-page .page-content article .my-orders .content .table-header .table-actions select,
+.my-orders-page .page-content article .my-orders .content .table-footer .table-actions .content input,
+.my-orders-page .page-content article .my-orders .content .table-footer .table-actions .content span,
+.order-placed-page .page-content article .revision-section article .order-name .form-group input,
+.order-placed-page .page-content article .revision-section article .desired-service .content ul li,
+.order-placed-page .page-content article .revision-section article .questions .content label,
+.order-placed-page .page-content article .revision-section article .questions .content input,
+.order-placed-page .page-content article .revision-section article .addtional-info .content textarea,
+.order-placed-page .page-content article .revision-section article .preview-media-btn button,
+.place-your-order-page .page-content article .info p,
+.place-your-order-page .page-content article .customize-order p,
+.place-your-order-form-page .page-content article .step-parent .step-indicator .step .step-icon,
+.place-your-order-form-page .page-content article .step1 .services-info article p,
+.place-your-order-form-page .page-content article .step3 .questions-sec label,
+.place-your-order-form-page .page-content article .step3 .questions-sec textarea,
+.place-your-order-form-page .page-content article .step6 .questions-sec label,
+.place-your-order-form-page .page-content article .step6 .questions-sec textarea,
+.place-your-order-form-page .page-content article .step6 .upload-file p,
+.place-your-order-form-page .page-content article .step6 .upload-file .file-input > .label,
+.portofolio-page .page-content article .topic-search article p,
+.portofolio-page .page-content article .filter-sec article ul li,
+.portofolio-page .page-content .topics-cards .topic-card .card-body p,
+.profile-page .page-content article .profile-data .table-responsive table tbody tr td,
+.portofolio-page .page-content article .portofolio-txt article p,
+.portofolio-page .page-content article .portofolio-txt article time,
+.portofolio-page .page-content article .portofolio-txt article ul li,
+.services-page .page-content article .services-needed article .tabs-section .search input,
+.services-page .page-content article .services-needed article .logo-content .logo-types .types-card .most-popular p,
+.services-page .page-content article .services-needed article .logo-content .logo-types .types-card .content p,
+.services-page .page-content article .services-needed article .logo-content .logo-types .types-card .media p,
+.services-page .page-content article .services-needed article .logo-content .logo-types .types-card .content li,
+.services-page .page-content article .services-needed article .logo-content .logo-cards .logo-card .content span,
+.services-page .page-content article .services-needed article .logo-content .logo-cards .logo-card .content p,
+.store-page .page-content article .topic-search article p,
+.store-page .page-content article .topic-search article form input,
+.store-item-page .page-content article .topic-search article form input ,
+.store-page .page-content .topics-cards .topic-card .card-img span,
+.store-page .page-content .topics-cards .topic-card .card-body p,
+.store-page .page-content .topics-cards a,
+.store-item-page .page-content article .topic-search article p,
+.store-item-page .page-content article .logo-details .logo-info article p,
+.store-item-page .page-content article .logo-details .logo-info article time,
+.store-item-page .page-content article .logo-details .logo-info article ul li,
+.store-item-page .page-content article .logo-details .logo-more-info,
+.store-item-page .page-content .topics-cards header a,
+.store-item-page .page-content .topics-cards .topic-card .card-img span,
+.store-item-page .page-content .topics-cards .topic-card .card-body p,
+.terms-page .page-content article p {
+    font-family: "Simah-Medium";
+}
+
+.portofolio-page .page-title header h1,
+.blog-page .page-title header h1,
+.blog-article-page .page-title header h1,
+.store-page .page-title header h1,
+.store-item-page .page-title header h1,
+.about-page .page-title header h1,
+.contact-page .page-title header h1,
+.services-page .page-title header h1,
+.profile-page .page-title header h1,
+.edit-profile-page .page-title header h1,
+.place-your-order-page .page-title header h1,
+.edit-order-page .page-title header h1,
+.my-orders-page .page-title header h1,
+.checkout-page .page-title header h1,
+.place-your-order-form-page .page-title header h1,
+.order-placed-page .page-title header h1,
+.impressum-page .page-title header h1,
+.terms-page .page-title header h1,
+.privacy-page .page-title header h1,
+.services-page .page-content article .services-needed article .logo-content .logo-slider .slider .carousel.slide .carousel-inner .carousel-item .content .carousel-caption h1 {
+    font-family: "Simah-ExtraBold";
+}

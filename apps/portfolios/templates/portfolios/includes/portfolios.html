@@ -1,0 +1,25 @@
+{% load i18n %}
+
+{% if page_obj %}
+    {% for portfolio in page_obj %}
+    <div class="col-sm-6 my-4" data-pk="{{portfolio.pk}}">
+        <a href="{{portfolio.get_absolute_url}}">
+            <div class="topic-card h-100">
+                <div class="card-img">
+                    <img class="w-100" src="{{portfolio.thumbnail.url}}" alt="{{portfolio.title}}"/>
+                </div>
+                <div class="card-body">
+                    <h4 class="text-overflow-elipsis" title="{{portfolio.title}}">{{portfolio.title}}</h4>
+                    <p class="text-overflow-elipsis" title="{{portfolio.subtitle}}">
+                        {{portfolio.subtitle}}
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+
+    {% include 'core/includes/pagination.html' %}
+{% else %}
+<p>{% trans 'No results!' %}</p>
+{% endif %}

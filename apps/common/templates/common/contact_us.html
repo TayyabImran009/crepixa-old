@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<section class="contact-page">
+
+    {% include 'layout/navbar.html' %}
+
+    <div class="page-title">
+        <header>
+            <div class="container">
+                <h1 class="wow fadeInUp" data-wow-duration="2s">{% trans 'Contact' %}</h1>
+            </div>
+        </header>
+    </div>
+    <div class="page-content">
+        <article>
+            <div class="container">
+                <div class="contact-content">
+                    <!-- Start Contact Form-->
+                    <div class="form-content">
+                        <h5>{% trans 'YOUR VOICE MATTERS!' %}</h5>
+                        <form id="contact-form" novalidate class="mt-4">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input class="form-control" id="business-name" name="name" type="text" placeholder="{% trans 'Your Name' %}"/>
+                                <div id="contact-form-error-name" class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="business-sector" type="email" name="email" placeholder="{% trans 'Your Email Address' %}"/>
+                                <div id="contact-form-error-email" class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" id="add-info" rows="10" name="message" placeholder="{% trans 'Your Message' %}"></textarea>
+                                <div id="contact-form-error-message" class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit">{% trans 'SEND' %}</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- End Contact Form-->
+                    <!-- Start Contact Info-->
+                    <div class="contact-info">
+                        <div class="content">
+                            <div class="logo">
+                                {% if ci.logo %}
+                                <img src="{% static 'assets/logo-black.png' %}"/>
+                                {% endif %}
+                            </div>
+                            <div class="address mt-5">
+                                <ul class="list-unstyled">
+                                    <li>{{ ci.company_name }}</li>
+                                    <li>{{ ci.address }}</li>
+                                    <li>{{ ci.city_country }}</li>
+                                    <li><a href="tel:{{ ci.phone_number }}">{{ ci.phone_number }}</a></li>
+                                    <li><a href="mailto:{{ ci.email_address }}">{{ ci.email_address }}</a></li>
+                                </ul>
+                            </div>
+                            <div class="social-icons mt-5">
+                                <ul class="list-unstyled social">
+                                    {% for page in social_media_pages %}
+                                    <li>
+                                        <a href="{{page.link}}" title="{{page.name}}" target="_blank">
+                                            <i class="fab {{page.fa_css_class}}"></i>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Contact Info-->
+                </div>
+            </div>
+            <!-- Start Google Map-->
+            <div class="map-section">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110502.60389552708!2d31.188423585500143!3d30.0596184702878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296e8423bba!2sCairo%2C%20Cairo%20Governorate!5e0!3m2!1sen!2seg!4v1601742848572!5m2!1sen!2seg" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+            <!-- End Google Map-->
+        </article>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+    var contactUsURL = '{% url "common:contact_us" %}';
+    $('#contact-form').on('submit', function() {
+        var formData = new FormData($(this)[0]);
+        $('#contact-form .invalid-feedback').hide();
+        $.ajax({
+            url: contactUsURL,
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: 'json'
+        }).done(function(response) {
+            document.getElementById("contact-form").reset();
+            $('#success-message-title').html('{% trans "CONTACT" %}');
+            $('#success-message-text').html('{% trans "Text that user should see after submitting the contact form." %}');
+            $('#successModal').modal('show');
+        })
+        .fail(function(response) {
+            for (var key in response.responseJSON) {
+                $('#contact-form-error-' + key).text(response.responseJSON[key]).show();
+            }
+        });
+        return false;
+    });
+</script>
+
+{% endblock %}

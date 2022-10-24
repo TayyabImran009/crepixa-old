@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+<section class="error-page">
+    <div class="error-content text-center">
+        <div class="data-content wow fadeIn" data-wow-duration="2s">
+          <img class="w-100" src="{% static 'assets/error/error.png' %}"/>
+          <img class="my-5" src="{% static 'assets/error/404.png' %}"/>
+            <h4>{% trans "Oops!, Page Not Found :(" %}</h4>
+            <button class="text-uppercase mt-3 mb-5" onclick="location.href='{% url 'common:homepage' %}';">
+              {% trans "RETURN TO HOME PAGE" %}
+            </button>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<section class="portofolio-page">
+    {% include 'layout/navbar.html' %}
+    <div class="page-title">
+        <header>
+            <div class="container">
+                <h1 class="wow fadeInUp" data-wow-duration="2s">{% trans 'PORTFOLIO' %}</h1>
+            </div>
+        </header>
+    </div>
+    <div class="page-content">
+        <div class="container">
+            <article>
+                <div class="portofolio-head">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 my-3">
+                            <div class="portofolio-img">
+                                <a>
+                                    <img class="w-100 img-2" src="{{portfolio.thumbnail.url}}"/>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 my-3">
+                            <div class="portofolio-txt">
+                                <header>
+                                    <h3>{{portfolio.title}}</h3>
+                                    <h5>{{portfolio.subtitle}}</h5>
+                                </header>
+                                <article>
+                                    <p>
+                                        {{portfolio.description}}
+                                    </p>
+                                    <time>{{portfolio.project_date|date:"m d Y"}}</time>
+                                    {% if categories or sub_categories or tags %}
+                                        <ul class="list-unstyled m-0 p-0">
+                                            {% for category in categories %}
+                                                <li>{{category.name}}</li>
+                                            {% endfor %}
+
+                                            {% for category in sub_categories %}
+                                                <li>{{category.name}}</li>
+                                            {% endfor %}
+
+                                            {% for tag in tags %}
+                                                <li>{{tag.name}}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portofolio-gallery py-5">
+                    <div class="row">
+                        {% for file in portfolio_files %}
+
+                            <div class="col-12">
+                                <a data-fancybox="gallery" href="{{file.portfolio_file.url}}" data-caption="{{file.title|default:''}}">
+                                    <img class="w-100 img-2" src="{{file.portfolio_file.url}}" alt="{{file.title|default:''}}"/>
+                                </a>
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    {% include 'common/includes/order_a_service.html' %}
+
+</section>
+
+
+{% endblock %}

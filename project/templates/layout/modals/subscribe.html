@@ -1,0 +1,57 @@
+{% load static %}
+{% load i18n %}
+
+<!-- Subscribe Modal-->
+<div class="modal fade subscripe-modal" id="subscribeModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="{% trans 'Close' %}">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="img-title"><img src="{% static 'assets/modals/subscribe.png' %}"/></div>
+                <div class="body-content">
+                    <h4>{% trans 'Subscribe' %}</h4>
+                    <p>{% trans 'Sign up here to get the latest, updates and special offers delivered directly to your inbox.' %}</p>
+                    <form id="subscribe-form" novalidate>
+                        <div class="form-group">
+                            <input class="form-control" id="email-subscribe" name="email" type="email" placeholder="{% trans 'ENTER YOUR MAIL ADDRESS' %}"/>
+                            <p hidden class="required">{% trans 'Email is required!' %}</p>
+                            <p hidden class="invalid">{% trans 'Email is not valid!' %}</p>
+                        </div>
+                        <div class="form-group">
+                            <button id="subscribe-submit" data-toggle="modal" data-target="#subscribeRequestModal" data-dismiss="modal">
+                                {% trans 'SUBSCRIBE' %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Subscribe Request Sent Modal-->
+<div class="modal fade subscripeRequest-modal" id="subscribeRequestModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="{% trans 'Close' %}">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="img-title"><img src="{% static 'assets/modals/subscribe.png' %}"/></div>
+                <div class="body-content">
+                    <h4>{% trans 'SUBSCRIBED' %}</h4>
+                    <p>{% trans 'Your request has been successfully sent!' %}</p>
+                    <h5>{% trans 'THANK YOU FOR CHOOSING US!' %}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

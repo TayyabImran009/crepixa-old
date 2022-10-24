@@ -1,0 +1,293 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block content %}
+
+    <section class="home-page">
+
+        {% include "layout/navbar.html" %}
+
+
+      <div class="modal fade emailVerificationModal-modal" id="emailConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body text-center">
+              <div class="modal-title">
+                <h4>{% trans "Email Verification" %}</h4>
+              </div>
+              <div class="body-content">
+                <img class="mb-4" src="{% static 'assets/modals/success.png' %}" width="60px" />
+                <h4>{% trans "Your Email has been verified Successfully!" %}</h4>
+                <form id="openLoginSubmitForm">
+                  <div class="form-group">
+                    <button class="submit-btn">{% trans "GO TO LOGIN" %}</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% if slides %}
+      <!-- Start Main Section-->
+      <main class="main-sec">
+        <div class="carousel slide" id="carouselExampleCaptions" data-ride="carousel">
+          <ol class="carousel-indicators">
+            {% for slide in slides %}
+            <li {% if forloop.first %}class="active" {% endif %}data-target="#carouselExampleCaptions" data-slide-to="{{ forloop.counter0 }}"></li>
+            {% endfor %}
+          </ol>
+          <div class="carousel-inner">
+            {% for slide in slides %}
+            <div class="carousel-item{% if forloop.first %} active{% endif %}" style="background: url('{{ slide.bg_image.url }}');">
+              <div class="d-flex align-items-center justify-content-center main">
+                <div class="carousel-caption">
+                  <h1 class="wow fadeInUp" data-wow-duration="2s">{{ slide.title }}</h1>
+                  <p>{{ slide.subtitle }}</p>
+                  {% if slide.is_button_external %}
+                    <button onclick="window.open('{{slide.button_url}}');">{{ slide.button_text }}</button>
+                  {% else %}
+                    <button onclick="window.location.href='{{slide.button_url}}';">{{ slide.button_text }}</button>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </main>
+      <!-- End Main Section-->
+      {% endif %}
+
+      {% if testimonials %}
+      <!-- Start Testimonials Section-->
+      <section class="testimonials">
+        <div class="container">
+          <header>
+            <h2 class="wow fadeInUp" data-wow-duration="2s">{% trans "Clients Reviews" %}</h2>
+          </header>
+          <article>
+            <div class="testimonials-content">
+              <div class="swiper-container gallery-top">
+                <div class="swiper-wrapper">
+                  {% for testimonial in testimonials %}
+                    <div class="swiper-slide">
+                      <div class="swiper-slide-container">
+                        <div class="testi-card" data-class="same-height">
+                          <div class="card-img"> <img class="logos" src="{{ testimonial.logo.url }}"/></div>
+                          <div class="card-title">
+                            <h3>{{ testimonial.name }}</h3>
+                            <h5>{{ testimonial.job_description }}</h5>
+                          </div>
+                          <div class="card-info">
+                            <p>“ {{ testimonial.review }} ”</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+                <!-- Add Arrows-->
+              </div>
+              <div class="swiper-container gallery-thumbs">
+                <div class="swiper-button-next"><i class="fas fa-chevron-right"></i></div>
+                <div class="swiper-button-prev"><i class="fas fa-chevron-left"></i></div>
+                <div class="swiper-wrapper mt-4 mb-4 align-items-center">
+                  {% for testimonial in testimonials %}
+                    <div class="swiper-slide">
+                      <div class="swiper-slide-container">
+                        <div class="content">
+                          <img class="logos" src="{{ testimonial.logo.url }}"/>
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <!-- End Testimonials Section-->
+      {% endif %}
+
+
+      {% if portfolios %}
+        <!-- Start SEE OUR PORTOFOLIO Section-->
+        <section class="our-portofoliol">
+          <div class="carousel slide" id="carouselExampleCaptions1" data-ride="carousel">
+            <ol class="carousel-indicators">
+              {% for portfolio in portfolios %}
+                <li class="{% if forloop.first %}active{% endif %}" data-target="#carouselExampleCaptions1" data-slide-to="{{forloop.counter0}}"></li>
+              {% endfor %}
+            </ol>
+            <div class="carousel-inner">
+              {% for portfolio in portfolios %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}" style="background: url('{{portfolio.image.url}}');">
+                  <div class="min-vh-100 d-flex align-items-end">
+                    <div class="carousel-caption container">
+                      <button onclick="window.location.href='{% url 'portfolios:portfolios' %}';">
+                        {% trans 'SEE OUR PORTFOLIO' %}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </section>
+        <!-- End SEE OUR PORTOFOLIO Section-->
+      {% endif %}
+
+      {% if services %}
+      <!-- Start Services Section-->
+      <section class="services-section wow fadeIn" data-wow-duration="2s">
+        <div class="container">
+          <div class="services-content">
+            <div class="container">
+              <div class="row justify-content-center text-center">
+                {% for service in services %}
+                  {% if forloop.counter == 4 %}
+                    <div class="w-100 break"></div>
+                  {% endif %}
+                <div class="col-lg-3 col-6">
+                  <a href="{% url 'services:services' %}?ss={% if service.category %}{{service.category.pk}}{% endif %}">
+                    <div class="item-content">
+                      <img src="{{service.icon.url}}"/>
+                      <h4><strong>{{service.name}}</strong></h4>
+                    </div>
+                  </a>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Services Section-->
+
+      {% endif %}
+
+      {% include 'common/includes/order_a_service.html' %}
+    </section>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script type="text/javascript">
+
+  var homepageURL = '{% url "common:homepage" %}';
+  var resetPasswordURL = '{% url 'accounts:reset_password' %}';
+
+  $(document).ready(function(){
+    $('#openLoginSubmitForm').on('submit', function(){
+      $('#emailConfirmationModal').modal('hide');
+      $('#loginModal').modal('show');
+      return false;
+    });
+
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    let email_confirmation_token = params.ect;
+    let reset_password_token = params.rpt;
+
+    if (email_confirmation_token) {
+      $.ajax({
+        url: '{% url "accounts:confirm_email" %}?email_confirmation_token=' + email_confirmation_token,
+        type: 'GET',
+        success: function(data) {
+          if (data.success) {
+            $('#emailConfirmationModal').modal('show');
+          } else {
+            $('#errorModal').modal('show');
+          }
+          window.history.pushState('', '', homepageURL);
+        },
+        error: function(data) {
+          $('#errorModal').modal('show');
+          window.history.pushState('', '', homepageURL);
+        }
+      });
+    }
+
+    if (reset_password_token) {
+      $('#newPasswordModal').modal('show');
+    }
+  });
+
+  $('#reset-password-form').on('submit', function() {
+      var formData = new FormData($(this)[0]);
+      $('#reset-password-form .invalid-feedback').hide();
+      $.ajax({
+          url: resetPasswordURL,
+          type: "POST",
+          data: formData,
+          processData: false,
+          contentType: false,
+          dataType: 'json'
+      }).done(function() {
+          $('#newPasswordModal').modal('hide');
+          $('#passwordUpdatedSuccessfullyModal').modal('show');
+          window.history.pushState('', '', homepageURL);
+          document.getElementById("reset-password-form").reset();
+      })
+      .fail(function(response) {
+          for (var key in response.responseJSON) {
+              $('#reset-password-form-error-' + key).text(response.responseJSON[key]).show();
+          }
+      });
+
+      return false;
+  });
+
+
+  {% if testimonials %}
+    $(document).ready(function(){
+      $maxHeight = 0;
+      $("[data-class='same-height']").each(function(){
+        if($(this).height() > $maxHeight) {
+          $maxHeight = $(this).height();
+        }
+      });
+      $("[data-class='same-height']").height($maxHeight);
+    });
+
+
+      //testimonials Slider
+      var galleryTop = new Swiper('.gallery-top', {
+          spaceBetween: 10,
+          navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+          },
+          loop: true,
+          loopedSlides: 3
+      });
+      var galleryThumbs = new Swiper('.gallery-thumbs', {
+          spaceBetween: 10,
+          centeredSlides: true,
+          slidesPerView: 'auto',
+          touchRatio: 0.2,
+          slideToClickedSlide: true,
+          loop: true,
+          loopedSlides: 3
+      });
+      galleryTop.controller.control = galleryThumbs;
+      galleryThumbs.controller.control = galleryTop;
+
+
+  {% endif %}
+
+</script>
+{% endblock %}

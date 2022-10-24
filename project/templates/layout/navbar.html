@@ -1,0 +1,94 @@
+{% load i18n %}
+{% load static %}
+
+<div class="navbar-section pb-2 headersss">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg px-0 py-3">
+            <a class="navbar-brand m-0" href="{% url 'common:homepage' %}">
+                <img src="{% static 'assets/shared/navbar/logo.png' %}"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{% trans 'Toggle navigation' %}">
+                <div class="toggle-menu" data-toggle-menu="">
+                    <span class="menu__bar"></span>
+                    <span class="menu__bar"></span>
+                    <span class="menu__bar"></span>
+                </div>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'portfolios:portfolios' %}">{% trans 'PORTFOLIO' %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'services:services' %}">{% trans "SERVICES" %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'stores:stores' %}">{% trans "STORE" %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'posts:posts' %}">{% trans "BLOG" %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'common:about' %}">{% trans 'ABOUT' %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'common:contact_us' %}">{% trans 'CONTACT' %}</a></li>
+                </ul>
+                <div class="form-inline my-2 my-lg-0">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="{% static 'assets/icons/Lang.svg' %}" width="20px" />
+                                <span class="mx-2">{{LANGUAGE_CODE|upper}}</span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% for k, v in settings.LANGUAGES %}
+                                    <a class="dropdown-item {% if k == 'ar' %}lang{% endif %}" href="{% url 'common:switch_language' %}?code={{k}}">{{v}}</a>
+                                    {% if not forloop.last %}
+                                        <div class="dropdown-divider lang"></div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </li>
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <img src="{% static 'assets/icons/Cart.svg' %}" width="25px" alt="{% trans 'Cart' %}"/>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" id="navbarDropdownProfile" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="{% static 'assets/icons/Profile.svg' %}" width="25px" alt="{% trans 'Profile' %}"/>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{% url 'accounts:profile' %}">
+                                    <span>{{request.user.first_name}}</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{% url 'accounts:profile' %}">
+                                    {% trans 'My Profile' %}
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    {% trans 'My Orders' %}
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{% url 'accounts:logout' %}">
+                                    <span>{% trans "Log out" %}</span>
+                                </a>
+                            </div>
+                        </li>
+
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" type="button" data-toggle="modal" data-target="#loginModal">{% trans "LOG IN" %}</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" type="button" data-toggle="modal" data-target="#subscribeModal">{% trans "SUBSCRIBE" %}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+{% include "layout/modals/subscribe.html" %}
+{% include "layout/modals/error.html" %}
+{% include "layout/modals/success.html" %}
+{% include "layout/modals/cookies.html" %}
+
+{% if not request.user.is_authenticated %}
+    {% include "layout/modals/login.html" %}
+    {% include "layout/modals/signup.html" %}
+    {% include "layout/modals/reset_password.html" %}
+{% endif %}

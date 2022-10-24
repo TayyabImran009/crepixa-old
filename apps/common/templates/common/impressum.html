@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block content %}
+
+<section class="impressum-page">
+
+    {% include "layout/navbar.html" %}
+
+    <div class="page-title">
+        <header>
+            <div class="container">
+                <h1 class="wow fadeInUp" data-wow-duration="2s">{% trans "Imprint" %}</h1>
+            </div>
+        </header>
+    </div>
+    <div class="page-content">
+        <article>
+            <!-- Start About Img-->
+            <section class="impressum-img">
+              <img class="w-100" src="{% static 'assets/about/about-img.jpg' %}" />
+            </section>
+            <!-- End About Img-->
+            <section class="py-5">
+                <!-- Start Creapixa UGmbH Section -->
+                <section class="impressum-txt">
+                    <div class="container">
+                        <div class="content">
+                            <header>
+                                <h3 class="wow fadeInUp" data-wow-duration="2s">{% trans "Creapixa UGmbH" %}</h3>
+                            </header>
+                            <article>
+                                <p class="mb-4">
+                                    <span>Limesstr. 4b</span><span>63450 Hanau</span><span>Telefon: +49 15906126411</span><span>E-Mail: service@crepixa.com</span>
+                                </p>
+                                <p>
+                                    <span>Vertretungsberechtigte Geschäftsführerin: Frau Hadeel Khalil</span><span>Handelsregister: Amtsgericht Hanau, HRB 98008</span>
+                                </p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+                <!-- End Creapixa UGmbH Section -->
+                <!-- Start Inhalte und Haftungsausschluss Section -->
+                <section class="impressum-txt">
+                    <div class="container">
+                        <div class="content">
+                            <header>
+                                <h3 class="wow fadeInUp" data-wow-duration="2s">Inhalte und Haftungsausschluss</h3>
+                            </header>
+                            <article>
+                                <p>Die vorstehenden Informationen und Texte stellen keine Rechtsberatung dar. Insbesondere bilden sie nicht den konkreten Einzelfall ab. Für Richtigkeit und Aktualität kann daher keine Haftung übernommen werden. Falls Sie eine haftungssichere Auskunft wünschen, wenden Sie sich an unserem Unternehmensteam. Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+                <!-- End Inhalte und Haftungsausschluss Section -->
+                <!-- Start Weitergabe Section -->
+                <section class="impressum-txt">
+                    <div class="container">
+                        <div class="content">
+                            <header>
+                                <h3 class="wow fadeInUp" data-wow-duration="2s">Weitergabe</h3>
+                            </header>
+                            <article>
+                                <p>Sämtliche angebotenen Informationen (Bilder, Videos, Texte usw.) dürfen – auch auszugsweise – nur mit schriftlicher Genehmigung von Crepixa UGmbH weiterverbreitet oder anderweitig veröffentlicht werden.</p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+                <!-- End Weitergabe Section -->
+                <!-- Start Urheberrecht Section -->
+                <section class="impressum-txt">
+                    <div class="container">
+                        <div class="content">
+                            <header>
+                                <h3 class="wow fadeInUp" data-wow-duration="2s">Urheberrecht</h3>
+                            </header>
+                            <article>
+                                <p>Texte und Grafiken von Crepixa UGmbH sind durch das Urheberrecht geschützt. Das Verwenden der Texte und Grafiken von Crepixa UGmbH auf eigenen Web-Seiten oder in anderen Medien ohne ausdrückliche Genehmigung verletzt das Urheberrecht und wird bei Entdecken abgemahnt und falls notwendig auch gerichtlich verfolgt.</p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+                <!-- End Urheberrecht Section -->
+            </section>
+        </article>
+    </div>
+
+    {% include 'common/includes/order_a_service.html' %}
+</section>
+
+
+{% endblock %}

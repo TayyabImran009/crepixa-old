@@ -1,0 +1,16 @@
+<div class="col-lg-4 col-sm-6 my-4" data-pk="{{post.id}}">
+    <a href="{{post.get_absolute_url}}">
+        <div class="topic-card h-100">
+            <div class="card-img">
+                <img class="w-100" src="{{ post.thumbnail.url }}" alt="{{post.title}}"/>
+            </div>
+            <div class="card-body">
+                <time>{{post.posted_at|date:"m, d, Y"}}</time>
+                <h4 class="text-overflow-elipsis" title="{{post.title}}">{{post.title}}</h4>
+                <p class="text-overflow-elipsis" title="{{post.author_full_name}}">
+                    {{post.author_full_name}}
+                </p>
+            </div>
+        </div>
+    </a>
+</div>

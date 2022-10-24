@@ -1,0 +1,98 @@
+{% load i18n %}
+{% load static %}
+
+<section class="footer-section">
+    <div class="footer-links">
+        <div class="container">
+            <div class="content">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-4 col-sm-3 mb-3">
+                        <div class="logo">
+                            {% if ci.logo %}
+                            <img src="{{ ci.logo.url }}"/>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-8 col-sm-9 mb-3">
+                        <div class="address">
+                            <ul class="list-unstyled">
+                                <li>{{ ci.company_name }}</li>
+                                <li>{{ ci.address }}</li>
+                                <li>{{ ci.city_country }}</li>
+                                <li><a href="tel:{{ ci.phone_number }}">{{ ci.phone_number }}</a></li>
+                                <li><a href="mailto:{{ ci.email_address }}">{{ ci.email_address }}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <div class="links">
+                            <ul class="list-unstyled row m-0 p-0-3">
+                                <li class="col-6 p-0"><a href="{% url 'common:homepage' %}">{% trans "HOME" %}</a></li>
+                                <li class="col-6 p-0"><a href="{% url 'common:about' %}">{% trans "ABOUT" %}</a></li>
+                                <li class="col-6 p-0"><a href="{% url 'portfolios:portfolios' %}">{% trans "PORTFOLIO" %}</a></li>
+                                <li class="col-6 p-0"><a href="{% url 'posts:posts' %}">{% trans "BLOG" %}</a></li>
+                                <li class="col-6 p-0"><a href="{% url 'common:contact_us' %}">{% trans 'CONTACT' %}</a></li>
+                                <li class="col-6 p-0"><a href="{% url 'services:services' %}">{% trans "SERVICES" %}</a></li>
+                                <li class="col-6 p-0"><a href="{% url 'stores:stores' %}">{% trans "STORE" %}</a></li>
+                                <li class="col-6 p-0"><a type="button" data-toggle="modal" data-target="#subscribeModal">{% trans "SUBSCRIBE" %}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copywright">
+                <p>{% trans "All Rights Reserved." %} © {% now "Y" %} {% trans "Crepixa Studio." %}</p>
+            </div>
+        </div>
+    </div>
+    <div class="social-icons">
+        <div class="contetnt">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 order-2 order-lg-1">
+                        <div class="left-side">
+                            <ul class="list-unstyled m-0">
+                                {% with 'Imprint_'|add:LANGUAGE_CODE|add:'_Crepixa.pdf' as file_path %}
+                                    <li><a href="{% static file_path %}" target="_blank">{% trans "NEWSLETTER" %}</a></li>
+                                {% endwith %}
+                                <li><a href="{% url 'common:impressum' %}">{% trans "Imprint" %}</a></li>
+                                <li>
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle" id="dropdownMenuLink" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {% trans "Privacy and Terms" %}
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="{% url 'common:privacy' %}">{% trans "Privacy Policy" %}</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="{% url 'common:terms' %}">{% trans "Terms and Conditions" %}</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="{% url 'common:cookies' %}">{% trans "Cookie Policy" %}</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-1 order-lg-2">
+                        <div class="right-side">
+                            <ul class="list-unstyled social m-0">
+                                {% for page in social_media_pages %}
+                                    <li>
+                                        <a href="{{page.link}}" title="{{page.name}}" target="_blank">
+                                            <i class="fab {{page.fa_css_class}}"></i>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="scrollTop" id="js-scroll-top">
+  <span class="scroll">
+    <img src="{% static 'assets/icons/arrow.svg' %}"/>
+  </span>
+</section>

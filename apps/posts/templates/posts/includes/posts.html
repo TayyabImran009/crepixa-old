@@ -1,0 +1,12 @@
+{% load i18n %}
+
+{% if page_obj %}
+    {% for post in page_obj %}
+        {% include "posts/includes/single_post.html" %}
+    {% endfor %}
+
+    {% include 'core/includes/pagination.html' %}
+
+{% else %}
+    <p>{% trans 'No results!' %}</p>
+{% endif %}

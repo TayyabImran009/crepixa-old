@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<section class="blog-page">
+    {% include "layout/navbar.html" %}
+    {% include "posts/includes/page_title.html" %}
+
+    <div class="page-content">
+        <div class="container">
+            <article>
+                <!-- Start Topics Search-->
+                <section class="topic-search">
+                    <header>
+                        <h3>{{blog_page.title}}</h3>
+                    </header>
+                    <article>
+                        <p>
+                            {{blog_page.subtitle}}
+                        </p>
+                        <form id="posts-search-form" novalidate autocomplete="off">
+                            <div class="form-row">
+                                <div class="col-md-8 col-lg-6 mb-3">
+                                    <div class="d-flex">
+                                        <input class="form-control mr-3" name="q" value='{{request.GET.q|default:""}}' type="text" placeholder="{% trans 'Search' %}"/>
+                                        <button type="submit">
+                                            <img src="{% static 'assets/icons/search.png' %}" alt="{% trans 'Search' %}"/>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-2 col-8 mb-3">
+                                    <select class="form-control" id="inputState" name="c">
+                                        <option value="">{% trans "Category" %}</option>
+                                        {% for c in categories %}
+                                        <option {% if request.GET.c == c.id|stringformat:"i" %}selected{% endif %} value="{{c.id}}">{{ c.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </article>
+                </section>
+                <!-- End Topics Search-->
+
+                <!-- Start Topics Card-->
+                <section class="topics-cards mt-5">
+                    <div class="row" id="posts-container">
+                        {% include "posts/includes/posts.html" %}
+                    </div>
+                </section>
+                <!-- End Topics Card-->
+            </article>
+        </div>
+    </div>
+
+    {% include 'common/includes/order_a_service.html' %}
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script type="text/javascript">
+    url = '{% url 'posts:posts' %}?';
+
+    function getPosts(page) {
+        params = $('#posts-search-form').serialize();
+        params += '&page=' + page
+        window.history.pushState('', '', url + params);
+        $.ajax({
+            url: url + params,
+            success: function(r) {
+                $('#posts-container').html(r);
+            }
+        });
+    }
+
+    $('#posts-search-form').on('submit', function() {
+        getPosts(1);
+        return false;
+    });
+
+    $('#inputState').on('change', function() {
+        $('#posts-search-form').submit();
+    });
+
+    $('#posts-container').on('click', '.pagination a', function() {
+        getPosts($(this).data('page'));
+        return false;
+    });
+</script>
+
+{% endblock %}

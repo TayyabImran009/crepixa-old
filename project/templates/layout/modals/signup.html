@@ -1,0 +1,153 @@
+{% load static %}
+{% load i18n %}
+{% load countries %}
+
+<!-- Sign Up Modal-->
+<div class="modal fade signup-modal" id="signupModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="{% trans 'Close' %}">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="modal-title">
+                    <h4>{% trans 'SIGN UP' %}</h4>
+                </div>
+                <div class="body-content">
+                    <h4>{% trans 'Welcome to Crepixa!' %}</h4>
+                    <p>{% trans 'Sign up to be a member and join the Crepixa Family!' %}</p>
+                    <form id="signup-form" novalidate autocomplete="off">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input class="custom-control-input" id="signupTitleRadio1" type="radio" value="mr" name="title"/>
+                                    <label class="custom-control-label" for="signupTitleRadio1">{% trans 'Mr.' %}</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input class="custom-control-input" id="signupTitleRadio2" type="radio" name="title" value="ms" />
+                                    <label class="custom-control-label" for="signupTitleRadio2">{% trans 'Ms.' %}</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input class="custom-control-input" id="signupTitleRadio3" type="radio" name="title" value="div" />
+                                    <label class="custom-control-label" for="signupTitleRadio3">{% trans 'Div.' %}</label>
+                                </div>
+                                <div id="signup-form-error-title" class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="id_signup_first_name">{% trans 'First Name*' %}</label>
+                                <input class="form-control" id="id_signup_first_name" name="first_name" type="text" placeholder="{% trans 'Enter your First Name' %}"/>
+                                <div id="signup-form-error-first_name" class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="id_signup_last_name">{% trans 'Last Name*' %}</label>
+                                <input class="form-control" id="id_signup_last_name" name="last_name" type="text" placeholder="{% trans 'Enter your Last Name' %}"/>
+                                <div id="signup-form-error-last_name" class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="id_signup_company_name">{% trans 'Company Name' %}</label>
+                                <input class="form-control" id="id_signup_company_name" name="company_name" type="text" placeholder="{% trans 'Enter your Company Name' %}"/>
+                                <div id="signup-form-error-company_name" class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="id_country">{% trans "Country*" %}</label>
+                                {% get_countries as countries %}
+                                <select name="country" class="form-control" id="id_country">
+                                    <option value="" selected="">{% trans "Choose your country" %}</option>
+                                    {% for country in countries %}
+                                        <option value="{{ country.code }}">{{ country.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div id="signup-form-error-country" class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="id_signup_email">{% trans 'Email Address*' %}</label>
+                                <input class="form-control" id="id_signup_email" type="email" name="email" placeholder="{% trans 'Enter your Email' %}"/>
+                                <div id="signup-form-error-email" class="invalid-feedback"></div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="id_signup_password">{% trans 'Password*' %}</label>
+                                <input class="form-control" id="id_signup_password" type="password" name="password" placeholder="{% trans 'Enter your password' %}"/>
+                                <div id="signup-form-error-password" class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div id="signup-form-error-__all__" class="invalid-feedback"></div>
+                            </div>
+                            <div class="terms-conditions">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input class="custom-control-input" id="privacy" type="checkbox"/>
+                                    <label class="custom-control-label" for="privacy">
+                                        {% trans 'By creating an account, you agree to ' %}
+                                        <a href="">
+                                            <strong>{% trans "Crepixa's " %}</strong>
+                                        </a>
+                                        <a href="">
+                                            {% trans 'Terms & Conditions.' %}
+                                        </a>
+                                        {% trans 'Read our ' %}
+                                        <a href="">
+                                            {% trans 'Privacy Policy' %}
+                                        </a>
+                                        {% trans ' & our information on' %}
+                                        <a href="">
+                                            {% trans 'Cookies.' %}
+                                        </a>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="body-footer">
+                    <div class="form-group">
+                        <button class="submit-btn" id="signup-submit-button" type="submit" disabled>{% trans 'SIGN UP' %}</button>
+                        <h5>{% trans 'Or' %}</h5>
+                        <button class="scial-btn">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>{% trans 'Log in with Facebook' %}</span>
+                        </button>
+                        <button class="scial-btn">
+                            <i class="fab fa-google"></i>
+                            <span>{% trans 'Log in with Google' %}</span>
+                        </button>
+                    </div>
+                    <div class="sign-up">
+                        <p>
+                            {% trans 'Already have an account?' %}
+                            <a data-toggle="modal" data-target="#loginModal" data-dismiss="modal">{% trans 'LOG IN' %}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade emailVerificationModal-modal" id="emailVerificationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="{% trans 'Close' %}">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="modal-title">
+                    <h4>{% trans 'EMAIL VERIFICATION' %}</h4>
+                </div>
+                <div class="body-content">
+                    <h4>{% trans 'Check Your Email!' %}</h4>
+                    <p>{% trans 'Please check your email with the verification link to complete your registration on the website.' %}</p>
+                    <form onsubmit="javascript.void(0);">
+                        <div class="form-group">
+                            <button class="submit-btn" data-dismiss="modal" aria-label="{% trans 'Close' %}">{% trans 'OK' %}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
